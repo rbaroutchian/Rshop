@@ -1,0 +1,56 @@
+{% extends 'base.html'%}
+
+{% load static %}
+{% block page_title %}
+blog page
+{% endblock page_title %}
+
+
+{% block page_content %}
+
+<div class="container pb-5 mb-2 mb-md-4">
+        <!-- Featured posts carousel-->
+        <hr class="mt-5">
+        <div class="pt-5 mt-md-2">
+          <!-- Entries grid-->
+          <div class="masonry-grid" data-columns="3">
+            <!-- Entry-->
+
+
+          {% for post in posts %}
+          	{% include 'includes/post.html' %}
+          {% endfor %}
+
+
+          
+
+          </div>
+          <hr class="mb-4">
+          <!-- Pagination-->
+          <nav class="d-flex justify-content-between pt-2" aria-label="Page navigation">
+            <ul class="pagination">
+              <li class="page-item"><a class="page-link" href="#"><i class="">
+                  <img src="{% static 'images/icons8-chevron-r(1).png' %}"  alt="#">
+              </i>قبلی</a></li>
+            </ul>
+            <ul class="pagination">
+              <li class="page-item d-sm-none"><span class="page-link page-link-static">1 / 5</span></li>
+              <li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link">1<span class="visually-hidden">(جاری)</span></span></li>
+              <li class="page-item d-none d-sm-block"><a class="page-link" href="#">2</a></li>
+              <li class="page-item d-none d-sm-block"><a class="page-link" href="#">3</a></li>
+              <li class="page-item d-none d-sm-block"><a class="page-link" href="#">4</a></li>
+              <li class="page-item d-none d-sm-block"><a class="page-link" href="#">5</a></li>
+            </ul>
+            <ul class="pagination">
+              <li class="page-item"><a class="page-link" href="#" aria-label="Next">بعدی<i class="">
+                  <img src="{% static 'images/icons8-chevron-24.png' %}"  alt="#">
+              </i></a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+
+
+
+
+{% endblock page_content %}
