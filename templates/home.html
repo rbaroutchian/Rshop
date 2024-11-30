@@ -1,0 +1,52 @@
+{% load static %}
+{% load render_partial %}
+<!DOCTYPE html>
+<html lang="en">
+  
+
+
+<head>
+    <meta charset="utf-8">
+    <title>
+        {% block page_title %}
+        
+        {% endblock page_title %}
+    </title>
+<!-- SEO Meta Tags-->
+    <meta name="description" content="Cartzilla - Bootstrap E-commerce Template">
+    <meta name="keywords" content="bootstrap, shop, e-commerce, market, modern, responsive,  business, mobile, bootstrap, html5, css3, js, gallery, slider, touch, creative, clean">
+    <meta name="author" content="گروه ستین">
+<!-- Viewport-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon and Touch Icons-->
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+
+   {% include 'header_home_reference.html' %}
+
+</head>
+<!-- Body-->
+  <body class="handheld-toolbar-enabled">
+    <!-- Google Tag Manager (noscript)-->
+  
+            {% render_partial 'home.views.site_header_home_component' %}
+    
+    
+            {% block page_content %}
+            
+                
+            {% endblock page_content %}
+
+            {% render_partial 'home.views.site_footer_home_component' %}
+
+    <!-- Footer-->
+            {% include 'footer_reference.html' %}
+  </body>
+
+
+</html>
+
+
+
+  
+  

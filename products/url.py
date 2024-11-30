@@ -5,8 +5,11 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = ([
-    path('', views.index, name='home'),
-    path('productlist', views.product_list, name='product_list'),
-    path('<str:slug>', views.product_detail, name='detail'),
+    # path('productlist', views.product_list, name='product_list'),
+    path('productlist', views.productListView.as_view(), name='product_list'),
 
-              ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT))
+    # path('<str:slug>', views.product_detail, name='detail'),
+    path('<str:slug>', views.productDetailView.as_view(), name='detail'),
+    # path('<int:pk>', views.productDetailView.as_view(), name='detail'),
+
+               ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT))

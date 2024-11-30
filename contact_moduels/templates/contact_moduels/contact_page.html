@@ -58,45 +58,45 @@
           <form class="needs-validation mb-3" action="{% url 'contact_page' %}" method="post">
               {% csrf_token %}
 
-{#                {% for field in contact_form %}#}
+{#                {% for field in form %}#}
 {#                	<div class="col-sm-6">#}
-{#                    {{ contact_form.field.label_tag }}#}
-{#                    {{ contact_form.field }}#}
-{#                    {{ contact_form.field.error_messages }}#}
+{#                    {{ form.field.label_tag }}#}
+{#                    {{ form.field }}#}
+{#                    {{ form.field.error_messages }}#}
 {#                    </div>#}
 {#                {% endfor %}#}
 
               <div class="row g-3">
-                <div class="col-sm-6 {% if contact_form.fullname.error_messages %} text-danger {% endif %}">
-                    {{ contact_form.fullname.label_tag }}
-                    {{ contact_form.fullname }}
-                    {{ contact_form.fullname.errors }}
+                <div class="col-sm-6 {% if form.Fullname.error_messages %} text-danger {% endif %}">
+                    {{ form.Fullname.label_tag }}
+                    {{ form.Fullname }}
+                    {{ form.Fullname.errors }}
                 </div>
                   <div class="col-sm-6">
-                    {{ contact_form.email.label_tag }}
-                    {{ contact_form.email }}
-                    {{ contact_form.email.errors }}
+                    {{ form.Email.label_tag }}
+                    {{ form.Email }}
+                    {{ form.Email.errors }}
                 </div>
                   <div class="col-sm-6">
-                    {{ contact_form.phone.label_tag }}
-                    {{ contact_form.phone }}
-                    {{ contact_form.phone.errors }}
+                    {{ form.Phone.label_tag }}
+                    {{ form.Phone }}
+                    {{ form.Phone.errors }}
                 </div>
                   <div class="col-sm-6">
-                    {{ contact_form.Title.label_tag }}
-                    {{ contact_form.Title }}
-                    {{ contact_form.Title.errors }}
+                    {{ form.Title.label_tag }}
+                    {{ form.Title }}
+                    {{ form.Title.errors }}
                 </div>
                   <div class="col-sm-12">
-                    {{ contact_form.message.label_tag }}
-                    {{ contact_form.message }}
-                    {{ contact_form.message.errors }}
+                    {{ form.Message.label_tag }}
+                    {{ form.Message }}
+                    {{ form.Message.errors }}
                 </div>
 
 
 
 
-{#              {{ contact_form }}#}
+{#              {{ form }}#}
 
 
 

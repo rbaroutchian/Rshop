@@ -6,7 +6,7 @@
                     <a class="card-img-top d-block overflow-hidden" href="{{ product.get_absolute_url }}">
                     <img src="{{ product.Pimage.url }}" alt="{{ product.Ptitle }}"></a>
                   <div class="card-body py-2">
-                    <h3 class="product-title fs-sm"><a href="#">{{ product.Ptitle }}</a></h3>
+                    <h3 class="product-title fs-sm"><a href="{{ product.get_absolute_url }}">{{ product.Ptitle }}</a></h3>
                     <div class="d-flex justify-content-between">
                       <div class="product-price"><span class="text-accent">{{ product.Pprice }}</span></div>
                       <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star"></i>
@@ -16,7 +16,7 @@
                   <div class="card-body card-body-hidden">
 
                     <button class="btn btn-primary btn-sm d-block w-100 mb-2" type="button"><i class="ci-cart fs-sm me-1"></i>اضافه کردن به سبدخرید</button>
-                    <div class="text-center"><a class="nav-link-style fs-ms" href="#quick-view" data-bs-toggle="modal"><i class="ci-eye align-middle me-1"></i>مشاهده</a></div>
+                    <div class="text-center"><a class="nav-link-style fs-ms" href="#{{ product.get_absolute_url }}" data-bs-toggle="modal"><i class="ci-eye align-middle me-1"></i>مشاهده</a></div>
                   </div>
                 </div>
                 <hr class="d-sm-none">

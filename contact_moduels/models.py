@@ -17,3 +17,14 @@ class Contact(models.Model):
     class Meta:
         verbose_name='تماس با ما'
         verbose_name_plural= 'لیست تماس با ما'
+
+
+class userProfile(models.Model):
+    url_image = models.FileField(upload_to='media')
+
+    # def __str__(self):
+    #     return self.Title
+    #
+    # class Meta:
+    #     verbose_name = 'تصویر دریافتی'
+    #     verbose_name_plural = 'لیست تصویرهای دریافتی'

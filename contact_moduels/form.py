@@ -86,6 +86,13 @@ class ContactModelForm(forms.ModelForm):
 
 
        }
+       error_messages={
+           'fullname':{
+               'required':'لطفا نام و نام خانوادگی را وارد کنید'
+
+           }
+       }
        # fields='__all__'
 
-
+class ProfileImage(forms.Form):
+    url_image = forms.ImageField()

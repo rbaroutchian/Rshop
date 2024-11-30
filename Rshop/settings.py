@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'products',
     'blog',
     'django_render_partial',
-    'contact_moduels'
+    'contact_moduels',
+    'home',
+    'account_module'
 ]
 
 MIDDLEWARE = [
@@ -75,6 +77,12 @@ WSGI_APPLICATION = 'Rshop.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+]
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+
+AUTH_USER_MODEL = 'account_module.User'
 
 DATABASES = {
     'default': {
@@ -132,3 +140,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp@gmail.com'
+EMAIL_HOST_USER = 'rbaroutchian@gmail.com'
+EMAIL_HOST_PASSWORD = 'Ramin863@'
+EMAIL_PORT = 587
+
