@@ -1,28 +1,27 @@
 {% load static %}
 <!-- Footer-->
+    	
+    
     <footer class="footer bg-dark pt-5">
       <div class="container">
         <div class="row pb-2">
-          <div class="col-md-4 col-sm-6">
-            <div class="widget widget-links widget-light pb-2 mb-4">
-              <h3 class="widget-title text-light">بخشهای فروشگاه</h3>
-              <ul class="widget-list">
-                <li class="widget-list-item"><a class="widget-list-link" href="#">کفش های کتانی و ورزشی</a></li>
-                <li class="widget-list-item"><a class="widget-list-link" href="#">لباس ورزشی</a></li>
-                <li class="widget-list-item"><a class="widget-list-link" href="#">لباس ورزشی</a></li>
-                 <li class="widget-list-item"><a class="widget-list-link" href="#">لباس ورزشی</a></li>
-                <li class="widget-list-item"><a class="widget-list-link" href="#">لباس ورزشی</a></li>
-                 <li class="widget-list-item"><a class="widget-list-link" href="#">لباس ورزشی</a></li>
-                 <li class="widget-list-item"><a class="widget-list-link" href="#">لباس ورزشی</a></li>
-               <li class="widget-list-item"><a class="widget-list-link" href="#">لباس ورزشی</a></li>
-                <li class="widget-list-item"><a class="widget-list-link" href="#">لباس ورزشی</a></li>
-                <li class="widget-list-item"><a class="widget-list-link" href="#">لباس ورزشی</a></li>
-                 <li class="widget-list-item"><a class="widget-list-link" href="#">لباس ورزشی</a></li>
-              <li class="widget-list-item"><a class="widget-list-link" href="#">لباس ورزشی</a></li>
-              <li class="widget-list-item"><a class="widget-list-link" href="#">لباس ورزشی</a></li>
-              </ul>
+            {% for box in footer_link_boxes %}
+            <div class="col-md-4 col-sm-6">
+                <div class="widget widget-links widget-light pb-2 mb-4">
+                    <h3 class="widget-title text-light">{{ box.title }}</h3>
+                    <ul class="widget-list">
+                        
+
+                        <li class="widget-list-item">
+                        <a class="widget-list-link" href="#">#</a>
+                        </li>
+                        
+
+                    </ul>
+                </div>
             </div>
-          </div>
+            {% endfor %}
+
           <div class="col-md-4 col-sm-6">
             <div class="widget widget-links widget-light pb-2 mb-4">
               <h3 class="widget-title text-light">اطلاعات حساب</h3>
@@ -146,6 +145,7 @@
         </div>
       </div>
     </footer>
+
     <!-- Toolbar for handheld devices (Default)-->
     <div class="handheld-toolbar">
       <div class="d-table table-layout-fixed w-100"><a class="d-table-cell handheld-toolbar-item" href="account-wishlist.html"><span class="handheld-toolbar-icon"><i class="ci-heart"></i></span><span class="handheld-toolbar-label">علاقه مندی</span></a><a class="d-table-cell handheld-toolbar-item" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" onclick="window.scrollTo(0, 0)"><span class="handheld-toolbar-icon"><i class="ci-menu"></i></span><span class="handheld-toolbar-label">منو</span></a><a class="d-table-cell handheld-toolbar-item" href="shop-cart.html"><span class="handheld-toolbar-icon"><i class="ci-cart"></i><span class="badge bg-primary rounded-pill ms-1">4</span></span><span class="handheld-toolbar-label">265.00</span></a></div>

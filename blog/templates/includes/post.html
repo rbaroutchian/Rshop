@@ -1,16 +1,21 @@
 {% load static %}            
 <article class="masonry-grid-item">
               <div class="card">
-                  <a class="blog-entry-thumb" href="{{ post.get_absolute_url }}">
-                      <img class="card-img-top" src="{{ post.sb_image.url}}" alt="{{ post.sb_title.url }}">
+                  <a class="blog-entry-thumb" href="#">
+                      <img class="card-img-top" src="{{ article.image.url }}" alt="{{ article.title }}">
                   </a>
                 <div class="card-body">
                   <h2 class="h6 blog-entry-title">
-                      <a href="{{ post.get_absolute_url }}">{{ post.sb_title.url }}</a></h2>
-                  <p class="fs-sm">{{ post.sb_description }}</p>
+                      <a href="#">{{ article.title }}</a></h2>
+                  <p class="fs-sm">{{ article.short_description }}</p>
                 </div>
                 <div class="card-footer d-flex align-items-center fs-xs"><a class="blog-entry-meta-link" href="#">
-                    <div class="blog-entry-author-ava"><img src="{% static 'images/meta/01.jpg' %} " alt="رافائل مارکز"></div>رافائل مارکز</a>
+                    <div class="blog-entry-author-ava">
+                {% if article.author is not None %}
+                    <img src="{% static 'images/meta/01.jpg' %} " alt="{{ article.author }}"></div>
+                	{{ article.author }}
+                {% endif %}
+                    </a>
                   <div class="ms-auto text-nowrap"><a class="blog-entry-meta-link text-nowrap" href="#">25 تیر</a><span class="blog-entry-meta-divider mx-2"></span><a class="blog-entry-meta-link text-nowrap" href="blog-single.html#comments"><i class="">
                       <img src="{% static 'images/icons8-comment-24.png' %}"  alt="#">
                   </i>8</a></div>

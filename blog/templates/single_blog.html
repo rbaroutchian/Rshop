@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load thumbnail %}
 {% block page_title %}
  blog single
 {% endblock page_title %}
@@ -13,7 +14,11 @@
             <!-- Post meta-->
             <div class="d-flex flex-wrap justify-content-between align-items-center pb-4 mt-n1">
               <div class="d-flex align-items-center fs-sm mb-2"><a class="blog-entry-meta-link" href="#">
-                  <div class="blog-entry-author-ava"><img src="{{ post.sb_image.url }}" alt="رافائل مارکز"></div>رافائل مارکز</a><span class="blog-entry-meta-divider"></span><a class="blog-entry-meta-link" href="#">11 مهر</a></div>
+                  <div class="blog-entry-author-ava">
+                      {% thumbnail post.image "862x398" quality=95 crop='center' as im %}
+                            <img src="{{ im.url }}" alt="رافائل مارکز">
+                      {% endthumbnail %}
+                  </div>رافائل مارکز</a><span class="blog-entry-meta-divider"></span><a class="blog-entry-meta-link" href="#">11 مهر</a></div>
               <div class="fs-sm mb-2"><a class="blog-entry-meta-link text-nowrap" href="#comments" data-scroll><i class=""></i>3</a></div>
             </div>
             <!-- Gallery-->

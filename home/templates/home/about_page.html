@@ -1,0 +1,86 @@
+{% extends 'home.html' %}
+{% load static %}
+{% block page_title %}
+در باره ما
+
+{% endblock page_title %}
+{% block page_content %}
+      <main class="container-fluid px-0">
+
+        <!-- Section: Shopping outlets-->
+        <section class="row g-0">
+          <div class="col-md-6 bg-position-center bg-size-cover bg-secondary order-md-2" style="min-height: 15rem; background-image: url('{{ site_setting.site_logo.url }}');"></div>
+          <div class="col-md-6 px-3 px-md-5 py-5 order-md-1">
+            <div class="mx-auto py-lg-5" style="max-width: 35rem;">
+              <h2 class="h3 pb-3">
+                  {{ site_setting.site_name }}
+              </h2>
+              <p class="fs-sm pb-3 text-muted">
+                  {{ site_setting.about_us_text }}
+              </p>
+                <a class="btn btn-warning btn-shadow" href="{% url 'product_list' %}">
+                    به فروشگاه های فروش مراجعه کنید</a>
+            </div>
+          </div>
+        </section>
+        <hr>
+        <!-- Section: Team-->
+        <section class="container py-3 py-lg-5 mt-4 mb-3">
+          <h2 class="h3 my-2">تیم اصلی ما</h2>
+          <p class="fs-sm text-muted">افرادی که تجربه خرید عالی شما را پشت سر می گذارند</p>
+          <div class="row pt-3">
+            <div class="col-lg-4 col-sm-6 mb-grid-gutter">
+              <div class="d-flex align-items-center"><img class="rounded-circle" src="img/team/03.jpg" width="96" alt="جاناتان دوو">
+                <div class="ps-3">
+                  <h6 class="fs-base pt-1 mb-1">جاناتان دوو</h6>
+                  <p class="fs-ms text-muted mb-0">مدیر عامل ، بنیانگذار</p><a class="nav-link-style fs-ms text-nowrap" href="mailto:setin@gmail.com"><i class="ci-mail me-2"></i>setin@gmail.com</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 mb-grid-gutter">
+              <div class="d-flex align-items-center"><img class="rounded-circle" src="img/team/04.jpg" width="96" alt="جاناتان دوو">
+                <div class="ps-3">
+                  <h6 class="fs-base pt-1 mb-1">جاناتان دوو</h6>
+                  <p class="fs-ms text-muted mb-0">مدیر عامل ، بنیانگذار</p><a class="nav-link-style fs-ms text-nowrap" href="mailto:Setin@gmail.com"><i class="ci-mail me-2"></i>Setin@gmail.com</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 mb-grid-gutter">
+              <div class="d-flex align-items-center"><img class="rounded-circle" src="img/team/06.jpg" width="96" alt="جاناتان دوو">
+                <div class="ps-3">
+                  <h6 class="fs-base pt-1 mb-1">جاناتان دوو</h6>
+                  <p class="fs-ms text-muted mb-0">مدیر عامل ، بنیانگذار</p><a class="nav-link-style fs-ms text-nowrap" href="mailto:Setin@gmail.com"><i class="ci-mail me-2"></i>Setin@gmail.com</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 mb-grid-gutter">
+              <div class="d-flex align-items-center"><img class="rounded-circle" src="img/team/02.jpg" width="96" alt="جاناتان دوو">
+                <div class="ps-3">
+                  <h6 class="fs-base pt-1 mb-1">جاناتان دوو</h6>
+                  <p class="fs-ms text-muted mb-0">مدیر عامل ، بنیانگذار</p><a class="nav-link-style fs-ms text-nowrap" href="mailto:Setin@gmail.com"><i class="ci-mail me-2"></i>Setin@gmail.com</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 mb-grid-gutter">
+              <div class="d-flex align-items-center"><img class="rounded-circle" src="img/team/01.jpg" width="96" alt="جاناتان دوو">
+                <div class="ps-3">
+                  <h6 class="fs-base pt-1 mb-1">جاناتان دوو</h6>
+                  <p class="fs-ms text-muted mb-0">مدیر عامل ، بنیانگذار</p><a class="nav-link-style fs-ms text-nowrap" href="mailto:Setin@gmail.com"><i class="ci-mail me-2"></i>Setin@gmail.com</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 mb-grid-gutter">
+              <div class="d-flex align-items-center"><img class="rounded-circle" src="img/team/07.jpg" width="96" alt="جاناتان دوو">
+                <div class="ps-3">
+                  <h6 class="fs-base pt-1 mb-1">جاناتان دوو</h6>
+                  <p class="fs-ms text-muted mb-0">مدیر عامل ، بنیانگذار</p><a class="nav-link-style fs-ms text-nowrap" href="mailto:Setin@gmail.com"><i class="ci-mail me-2"></i>Setin@gmail.com</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- Section: We are hiring-->
+        <hr>
+      </main>
+
+{% endblock page_content %}

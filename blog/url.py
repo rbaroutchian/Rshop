@@ -1,10 +1,7 @@
 from django.urls import path
 from . import views
-from django.conf import settings
-from django.conf.urls.static import static
 
 urlpatterns = [
-    path('', views.post, name='all_post'),
-    path('<str:sb_slug>', views.detail, name='sb_detail'),
+    path('article/', views.ArticleListView.as_view(), name='article_list')
+]
 
-]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
