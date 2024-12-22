@@ -4,7 +4,7 @@ from . import models
 
 
 class FooterLinkAdmin(admin.ModelAdmin):
-    list_display = ['title', 'url']
+    list_display = ['Ftitle', 'url']
 
 
 class SliderAdmin(admin.ModelAdmin):

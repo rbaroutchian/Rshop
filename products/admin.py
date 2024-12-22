@@ -3,7 +3,9 @@ from . import models
 
 # Register your models here.
 
-
+class ProductCategory(admin.ModelAdmin):
+    list_display = ['Ctitle','urltitle','parent','is_active']
+    list_editable =['urltitle','parent','is_active']
 class ProductAdmin(admin.ModelAdmin):
     # readonly_fields = ['slug']
     prepopulated_fields = {
@@ -15,7 +17,7 @@ class ProductAdmin(admin.ModelAdmin):
 
 
 admin.site.register(models.Product, ProductAdmin)
-admin.site.register(models.ProductCategory)
+admin.site.register(models.ProductCategory,ProductCategory)
 admin.site.register(models.ProductTag)
 admin.site.register(models.ProductBrand)
 

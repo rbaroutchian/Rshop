@@ -32,7 +32,7 @@ class FooterLinkBox(models.Model):
         return self.title
 
 class FooterLink(models.Model):
-    title = models.CharField(max_length=200, verbose_name='عنوان')
+    Ftitle = models.CharField(max_length=200, verbose_name='عنوان')
     url = models.URLField(max_length=500, verbose_name='لینک')
     footer_link_box = models.ForeignKey(to=FooterLinkBox, on_delete=models.CASCADE, verbose_name='دسته بندی', related_name='links')
 

@@ -5,17 +5,17 @@
     <footer class="footer bg-dark pt-5">
       <div class="container">
         <div class="row pb-2">
-            {% for box in footer_link_boxes %}
+            {% for footer_link_box in footer_link_boxes %}
             <div class="col-md-4 col-sm-6">
                 <div class="widget widget-links widget-light pb-2 mb-4">
-                    <h3 class="widget-title text-light">{{ box.title }}</h3>
+                    <h3 class="widget-title text-light">{{ footer_link_box.title }}</h3>
                     <ul class="widget-list">
-                        
+                        {% for link in footer_link_box.footerlink_set.all %}
 
                         <li class="widget-list-item">
-                        <a class="widget-list-link" href="#">#</a>
+                        <a class="widget-list-link" href="{{ link.url }}">{{ link.Ftitle }}</a>
                         </li>
-                        
+                        {% endfor %}
 
                     </ul>
                 </div>
@@ -141,7 +141,7 @@
               <div class="mb-3"><a class="btn-social bs-light bs-twitter ms-2 mb-2" href="#"><i class="ci-twitter"></i></a><a class="btn-social bs-light bs-facebook ms-2 mb-2" href="#"><i class="ci-facebook"></i></a><a class="btn-social bs-light bs-instagram ms-2 mb-2" href="#"><i class="ci-instagram"></i></a><a class="btn-social bs-light bs-pinterest ms-2 mb-2" href="#"><i class="ci-pinterest"></i></a><a class="btn-social bs-light bs-youtube ms-2 mb-2" href="#"><i class="ci-youtube"></i></a></div><img class="d-inline-block" src="img/cards-alt.png" width="187" alt="روش پرداخت">
             </div>
           </div>
-          <div class="pb-4 fs-xs text-light opacity-50 text-center text-md-start">© کلیه حقوق محفوظ است  <a class="text-light" href="#" target="_blank" rel="noopener">گروه ستین</a></div>
+          <div class="pb-4 fs-xs text-light opacity-50 text-center text-md-start">© {{ site_setting.copy_right }}  <a class="text-light" href="#" target="_blank" rel="noopener">#</a></div>
         </div>
       </div>
     </footer>

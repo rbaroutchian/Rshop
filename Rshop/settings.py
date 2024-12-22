@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'site_moduel',
     'sorl.thumbnail',
     'jalali_date',
+    'polls',
 
 ]
 

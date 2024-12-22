@@ -38,7 +38,7 @@ def site_footer(request):
     setting: SiteSetting = SiteSetting.objects.filter(is_main_setting=True).first()
     footer_link_boxes = FooterLinkBox.objects.all()
     for item in footer_link_boxes:
-        item.footerlink_set
+        var = item.footerlink_set
     context = {
         'site_setting': setting,
         'footer_link_boxes': footer_link_boxes,

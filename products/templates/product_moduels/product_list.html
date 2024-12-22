@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load render_partial %}
 
 {% block page_title %}
 لیست محصولات
@@ -17,157 +18,13 @@
                 <button class="btn-close ms-auto" type="button" data-bs-dismiss="offcanvas" aria-label="Close"></button>
               </div>
               <div class="offcanvas-body py-grid-gutter px-lg-grid-gutter">
-                <!-- Categories-->
+                  <!-- Categories-->
                 <div class="widget widget-categories mb-4 pb-4 border-bottom">
-                  <h3 class="widget-title">دسته بندی</h3>
+                    <h3 class="widget-title">دسته بندی</h3>
                   <div class="accordion mt-n1" id="shop-categories">
-                    <!-- Shoes-->
-                    <div class="accordion-item">
-                      <h3 class="accordion-header"><a class="accordion-button collapsed" href="#shoes" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="shoes">کفش</a></h3>
-                      <div class="accordion-collapse collapse" id="shoes" data-bs-parent="#shop-categories">
-                        <div class="accordion-body">
-                          <div class="widget widget-links widget-filter">
-                            <div class="input-group input-group-sm mb-2">
-                              <input class="widget-filter-search form-control rounded-end" type="text" placeholder="جستجو"><i class="ci-search position-absolute top-50 end-0 translate-middle-y fs-sm me-3"></i>
-                            </div>
-                            <ul class="widget-list widget-filter-list pt-1" style="height: 12rem;" data-simplebar data-simplebar-auto-hide="false">
-                              <li class="widget-list-item widget-filter-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span class="widget-filter-item-text">دیدن همه</span><span class="fs-xs text-muted ms-3">1,953</span></a></li>
-                              <li class="widget-list-item widget-filter-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span class="widget-filter-item-text">پمپ و کفش پاشنه بلند</span><span class="fs-xs text-muted ms-3">247</span></a></li>
-                              <li class="widget-list-item widget-filter-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span class="widget-filter-item-text">پمپ و کفش پاشنه بلند</span><span class="fs-xs text-muted ms-3">156</span></a></li>
-                              <li class="widget-list-item widget-filter-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span class="widget-filter-item-text">صندل</span><span class="fs-xs text-muted ms-3">310</span></a></li>
-                              <li class="widget-list-item widget-filter-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span class="widget-filter-item-text">صندل</span><span class="fs-xs text-muted ms-3">402</span></a></li>
-                              <li class="widget-list-item widget-filter-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span class="widget-filter-item-text">صندل</span><span class="fs-xs text-muted ms-3">393</span></a></li>
-                              <li class="widget-list-item widget-filter-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span class="widget-filter-item-text">دمپایی</span><span class="fs-xs text-muted ms-3">50</span></a></li>
-                              <li class="widget-list-item widget-filter-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span class="widget-filter-item-text">دمپایی</span><span class="fs-xs text-muted ms-3">93</span></a></li>
-                              <li class="widget-list-item widget-filter-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span class="widget-filter-item-text">بوت مردانه</span><span class="fs-xs text-muted ms-3">122</span></a></li>
-                              <li class="widget-list-item widget-filter-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span class="widget-filter-item-text">بوت مردانه</span><span class="fs-xs text-muted ms-3">116</span></a></li>
-                              <li class="widget-list-item widget-filter-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span class="widget-filter-item-text">همه کفش ها</span><span class="fs-xs text-muted ms-3">24</span></a></li>
-                              <li class="widget-list-item widget-filter-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span class="widget-filter-item-text">همه کفش ها</span><span class="fs-xs text-muted ms-3">31</span></a></li>
-                              <li class="widget-list-item widget-filter-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span class="widget-filter-item-text">کفش مجلسی</span><span class="fs-xs text-muted ms-3">9</span></a></li>
-                              <li class="widget-list-item widget-filter-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span class="widget-filter-item-text">کفش مجلسی</span><span class="fs-xs text-muted ms-3">18</span></a></li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- Clothing-->
-                    <div class="accordion-item">
-                      <h3 class="accordion-header"><a class="accordion-button" href="#clothing" role="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="clothing">تن پوش</a></h3>
-                      <div class="accordion-collapse collapse show" id="clothing" data-bs-parent="#shop-categories">
-                        <div class="accordion-body">
-                          <div class="widget widget-links widget-filter">
-                            <div class="input-group input-group-sm mb-2">
-                              <input class="widget-filter-search form-control rounded-end" type="text" placeholder="جستجو"><i class="ci-search position-absolute top-50 end-0 translate-middle-y fs-sm me-3"></i>
-                            </div>
-                         <ul class="widget-list widget-filter-list pt-1" style="height: 12rem;" data-simplebar data-simplebar-auto-hide="false">
-                              <li class="widget-list-item widget-filter-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span class="widget-filter-item-text">دیدن همه</span><span class="fs-xs text-muted ms-3">2,548</span></a></li>
-                              <li class="widget-list-item widget-filter-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span class="widget-filter-item-text">تن پوش</span><span class="fs-xs text-muted ms-3">235</span></a></li>
-                              <li class="widget-list-item widget-filter-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span class="widget-filter-item-text">تن پوش</span><span class="fs-xs text-muted ms-3">410</span></a></li>
-                              <li class="widget-list-item widget-filter-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span class="widget-filter-item-text">لباس</span><span class="fs-xs text-muted ms-3">107</span></a></li>
-                              <li class="widget-list-item widget-filter-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span class="widget-filter-item-text">لباس</span><span class="fs-xs text-muted ms-3">93</span></a></li>
-                              <li class="widget-list-item widget-filter-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span class="widget-filter-item-text">هودی</span><span class="fs-xs text-muted ms-3">122</span></a></li>
-                              <li class="widget-list-item widget-filter-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span class="widget-filter-item-text">هودی</span><span class="fs-xs text-muted ms-3">116</span></a></li>
-                              <li class="widget-list-item widget-filter-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span class="widget-filter-item-text">کت</span><span class="fs-xs text-muted ms-3">215</span></a></li>
-                              <li class="widget-list-item widget-filter-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span class="widget-filter-item-text">کت</span><span class="fs-xs text-muted ms-3">150</span></a></li>
-                              <li class="widget-list-item widget-filter-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span class="widget-filter-item-text">جین</span><span class="fs-xs text-muted ms-3">8</span></a></li>
-                              <li class="widget-list-item widget-filter-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span class="widget-filter-item-text">جین</span><span class="fs-xs text-muted ms-3">26</span></a></li>
-                              <li class="widget-list-item widget-filter-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span class="widget-filter-item-text">پیراهن</span><span class="fs-xs text-muted ms-3">164</span></a></li>
-                              <li class="widget-list-item widget-filter-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span class="widget-filter-item-text">پیراهن</span><span class="fs-xs text-muted ms-3">147</span></a></li>
-                              <li class="widget-list-item widget-filter-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span class="widget-filter-item-text">تی شرت</span><span class="fs-xs text-muted ms-3">139</span></a></li>
-                              <li class="widget-list-item widget-filter-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span class="widget-filter-item-text">تی شرت</span><span class="fs-xs text-muted ms-3">65</span></a></li>
-                              <li class="widget-list-item widget-filter-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span class="widget-filter-item-text">پیراهن</span><span class="fs-xs text-muted ms-3">18</span></a></li>
-                              <li class="widget-list-item widget-filter-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span class="widget-filter-item-text">پیراهن</span><span class="fs-xs text-muted ms-3">209</span></a></li>
-                              <li class="widget-list-item widget-filter-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span class="widget-filter-item-text">تاپ</span><span class="fs-xs text-muted ms-3">132</span></a></li>
-                              <li class="widget-list-item widget-filter-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span class="widget-filter-item-text">تاپ</span><span class="fs-xs text-muted ms-3">105</span></a></li>
-                              <li class="widget-list-item widget-filter-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span class="widget-filter-item-text">لباس شنا</span><span class="fs-xs text-muted ms-3">87</span></a></li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- Bags-->
-                    <div class="accordion-item">
-                      <h3 class="accordion-header"><a class="accordion-button collapsed" href="#bags" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="bags">کیف</a></h3>
-                      <div class="accordion-collapse collapse" id="bags" data-bs-parent="#shop-categories">
-                        <div class="accordion-body">
-                          <div class="widget widget-links widget-filter">
-                            <div class="input-group input-group-sm mb-2">
-                              <input class="widget-filter-search form-control rounded-end" type="text" placeholder="جستجو"><i class="ci-search position-absolute top-50 end-0 translate-middle-y fs-sm me-3"></i>
-                            </div>
-                             <ul class="widget-list widget-filter-list pt-1" style="height: 12rem;" data-simplebar data-simplebar-auto-hide="false">
-                              <li class="widget-list-item widget-filter-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span class="widget-filter-item-text">دیدن همه</span><span class="fs-xs text-muted ms-3">801</span></a></li>
-                              <li class="widget-list-item widget-filter-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span class="widget-filter-item-text">مجلسی</span><span class="fs-xs text-muted ms-3">238</span></a></li>
-                              <li class="widget-list-item widget-filter-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span class="widget-filter-item-text">مجلسی</span><span class="fs-xs text-muted ms-3">116</span></a></li>
-                              <li class="widget-list-item widget-filter-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span class="widget-filter-item-text">اسپرت</span><span class="fs-xs text-muted ms-3">104</span></a></li>
-                              <li class="widget-list-item widget-filter-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span class="widget-filter-item-text">اسپرت</span><span class="fs-xs text-muted ms-3">115</span></a></li>
-                              <li class="widget-list-item widget-filter-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span class="widget-filter-item-text">پول</span><span class="fs-xs text-muted ms-3">17</span></a></li>
-                              <li class="widget-list-item widget-filter-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span class="widget-filter-item-text">پول</span><span class="fs-xs text-muted ms-3">9</span></a></li>
-                              <li class="widget-list-item widget-filter-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span class="widget-filter-item-text">ورزشی</span><span class="fs-xs text-muted ms-3">93</span></a></li>
-                              <li class="widget-list-item widget-filter-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span class="widget-filter-item-text">ورزشی</span><span class="fs-xs text-muted ms-3">5</span></a></li>
-                              <li class="widget-list-item widget-filter-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span class="widget-filter-item-text">مسافرتی</span><span class="fs-xs text-muted ms-3">8</span></a></li>
-                              <li class="widget-list-item widget-filter-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span class="widget-filter-item-text">زنانه و بچگانه</span><span class="fs-xs text-muted ms-3">2</span></a></li>
-                              <li class="widget-list-item widget-filter-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span class="widget-filter-item-text">مسافرتی</span><span class="fs-xs text-muted ms-3">31</span></a></li>
-                              <li class="widget-list-item widget-filter-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span class="widget-filter-item-text">زنانه و بچگانه</span><span class="fs-xs text-muted ms-3">45</span></a></li>
-                              <li class="widget-list-item widget-filter-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span class="widget-filter-item-text">مسافرتی</span><span class="fs-xs text-muted ms-3">18</span></a></li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- Sunglasses-->
-                    <div class="accordion-item">
-                      <h3 class="accordion-header"><a class="accordion-button collapsed" href="#sunglasses" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="sunglasses">عینک</a></h3>
-                      <div class="collapse" id="sunglasses" data-bs-parent="#shop-categories">
-                        <div class="accordion-body">
-                          <div class="widget widget-links">
-                            <ul class="widget-list">
-                              <li class="widget-list-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span>دیدن همه</span><span class="fs-xs text-muted ms-3">1,842</span></a></li>
-                              <li class="widget-list-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span>فشن</span><span class="fs-xs text-muted ms-3">953</span></a></li>
-                              <li class="widget-list-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span>اسپرت</span><span class="fs-xs text-muted ms-3">589</span></a></li>
-                              <li class="widget-list-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span>کلاسیک</span><span class="fs-xs text-muted ms-3">300</span></a></li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- Watches-->
-                    <div class="accordion-item">
-                      <h3 class="accordion-header"><a class="accordion-button collapsed" href="#watches" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="watches">جین</a></h3>
-                      <div class="accordion-collapse collapse" id="watches" data-bs-parent="#shop-categories">
-                        <div class="accordion-body">
-                          <div class="widget widget-links">
-                            <ul class="widget-list">
-                              <li class="widget-list-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span>دیدن همه</span><span class="fs-xs text-muted ms-3">734</span></a></li>
-                              <li class="widget-list-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span>جین فشن</span><span class="fs-xs text-muted ms-3">572</span></a></li>
-                              <li class="widget-list-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span>جین باکلاس</span><span class="fs-xs text-muted ms-3">110</span></a></li>
-                              <li class="widget-list-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span>جین فشن</span><span class="fs-xs text-muted ms-3">34</span></a></li>
-                              <li class="widget-list-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span>جین اسپرت</span><span class="fs-xs text-muted ms-3">18</span></a></li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- Accessories-->
-                    <div class="accordion-item">
-                      <h3 class="accordion-header"><a class="accordion-button collapsed" href="#accessories" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="accessories">کیف</a></h3>
-                      <div class="accordion-collapse collapse" id="accessories" data-bs-parent="#shop-categories">
-                        <div class="accordion-body">
-                          <div class="widget widget-links">
-                            <ul class="widget-list">
-                              <li class="widget-list-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span>دیدن همه</span><span class="fs-xs text-muted ms-3">920</span></a></li>
-                              <li class="widget-list-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span>کمربندها</span><span class="fs-xs text-muted ms-3">364</span></a></li>
-                              <li class="widget-list-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span>کلاه</span><span class="fs-xs text-muted ms-3">405</span></a></li>
-                              <li class="widget-list-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span>جواهر</span><span class="fs-xs text-muted ms-3">131</span></a></li>
-                              <li class="widget-list-item"><a class="widget-list-link d-flex justify-content-between align-items-center" href="#"><span>آرایشی</span><span class="fs-xs text-muted ms-3">20</span></a></li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- قیمت -->
-                <div class="widget mb-4 pb-4 border-bottom">
+
+                    {% render_partial 'products.views.product_categories_component' %}
+
                   <h3 class="widget-title">قیمت</h3>
                   <div class="range-slider" data-start-min="250" data-start-max="680" data-min="0" data-max="1000" data-step="1">
                     <div class="range-slider-ui"></div>

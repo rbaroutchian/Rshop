@@ -8,6 +8,7 @@ from unidecode import unidecode
 # Create your models here.
 
 class ProductCategory(models.Model):
+    parent = models.ForeignKey('ProductCategory', on_delete=models.CASCADE, null=True, blank=True, related_name='parentcategories')
     Ctitle = models.CharField(max_length=300, db_index=True, verbose_name="عنوان")
     urltitle = models.CharField(max_length=300, db_index=True, verbose_name="عنوان در url" )
     is_active = models.BooleanField(default=True, verbose_name='فعال / غیرفعال')
@@ -60,7 +61,7 @@ class Product(models.Model):
     # Pinfo = models.OneToOneField(ProductInfo, on_delete=models.CASCADE, null=True,
     #                              related_name='product_info',
     #                              verbose_name='اطلاعات تکمیلی',)
-    Pcategory = models.ForeignKey(ProductCategory, on_delete=models.CASCADE, null=True, related_name='products', verbose_name='دسته بندی')
+    Pcategory = models.ManyToManyField(ProductCategory, null=True, related_name='products', verbose_name='دسته بندی')
     product_tag = models.ManyToManyField(ProductTag, verbose_name='تگ های محصول')
     #protect برای محافظت کردن می باشد
     #casade برای این است که اگر اون دسته بندی پاک شد همه محصولات آن پاک می شود

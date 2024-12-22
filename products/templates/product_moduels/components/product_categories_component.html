@@ -1,0 +1,25 @@
+{% for main_category in main_categories %}
+        <div class="accordion-item">
+            <h3 class="accordion-header">
+                {% if main_category.parentcategories.all %}
+                    <a class="accordion-button collapsed" href="{% url 'product_by_category' category=main_category.urltitle %}" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="{{ main_category.urltitle }}">
+                        {{ main_category.Ctitle }}
+                    </a>
+                {% else %}
+                    <a class="accordion-button collapsed" href="#" role="button">
+                        {{ main_category.Ctitle }}
+                    </a>
+                {% endif %}
+            </h3>
+{#        accordion-collapse collapse#}
+            <div class="#" id="{{ main_category.urltitle }}" data-bs-parent="{{ main_category.Ctitle }}">
+                <div class="accordion-body">
+                    <ul>
+                        {% for subcategory in main_category.parentcategories.all %}
+                             <li><a href="{% url 'product_by_category' subcategory.urltitle %}"> {{ subcategory.Ctitle }} </a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
