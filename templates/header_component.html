@@ -1,146 +1,7 @@
+
 {% load static %}
 
-      <!-- Quick View Modal-->
-{#      <div class="modal-quick-view modal fade" id="quick-view" tabindex="-1">#}
-{#        <div class="modal-dialog modal-xl">#}
-{#          <div class="modal-content">#}
-{#            <div class="modal-header">#}
-{#              <h4 class="modal-title product-title"><a href="shop-single-v1.html" data-bs-toggle="tooltip" data-bs-placement="right" title="دیدن محصول">هودی اسپرت<i class="ci-arrow-right fs-lg ms-2"></i></a></h4>#}
-{#              <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>#}
-{#            </div>#}
-{#            <div class="modal-body">#}
-{#              <div class="row">#}
-{#                <!-- گالری محصولات-->#}
-{#                <div class="col-lg-7 pe-lg-0">#}
-{#                  <div class="product-gallery">#}
-{#                    <div class="product-gallery-preview order-sm-2">#}
-{#                      <div class="product-gallery-preview-item active" id="first"><img class="image-zoom" src="img/shop/single/gallery/01.jpg" data-zoom="img/shop/single/gallery/01.jpg" alt="تصویر محصول">#}
-{#                        <div class="image-zoom-pane"></div>#}
-{#                      </div>#}
-{#                      <div class="product-gallery-preview-item" id="second"><img class="image-zoom" src="img/shop/single/gallery/02.jpg" data-zoom="img/shop/single/gallery/02.jpg" alt="تصویر محصول">#}
-{#                        <div class="image-zoom-pane"></div>#}
-{#                      </div>#}
-{#                      <div class="product-gallery-preview-item" id="third"><img class="image-zoom" src="img/shop/single/gallery/03.jpg" data-zoom="img/shop/single/gallery/03.jpg" alt="تصویر محصول">#}
-{#                        <div class="image-zoom-pane"></div>#}
-{#                      </div>#}
-{#                      <div class="product-gallery-preview-item" id="fourth"><img class="image-zoom" src="img/shop/single/gallery/04.jpg" data-zoom="img/shop/single/gallery/04.jpg" alt="تصویر محصول">#}
-{#                        <div class="image-zoom-pane"></div>#}
-{#                      </div>#}
-{#                    </div>#}
-{#                    <div class="product-gallery-thumblist order-sm-1"><a class="product-gallery-thumblist-item active" href="#first"><img src="img/shop/single/gallery/th01.jpg" alt="تصویر محصول"></a><a class="product-gallery-thumblist-item" href="#second"><img src="img/shop/single/gallery/th02.jpg" alt="تصویر محصول"></a><a class="product-gallery-thumblist-item" href="#third"><img src="img/shop/single/gallery/th03.jpg" alt="تصویر محصول"></a><a class="product-gallery-thumblist-item" href="#fourth"><img src="img/shop/single/gallery/th04.jpg" alt="تصویر محصول"></a></div>#}
-{#                  </div>#}
-{#                </div>#}
-{#                <!-- Product details-->#}
-{#                <div class="col-lg-5 pt-4 pt-lg-0 image-zoom-pane">#}
-{#                  <div class="product-details ms-auto pb-3">#}
-{#                    <div class="d-flex justify-content-between align-items-center mb-2"><a href="shop-single-v1.html#reviews">#}
-{#                        <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star"></i>#}
-{#                        </div><span class="d-inline-block fs-sm text-body align-middle mt-1 ms-1">74 نظر</span></a>#}
-{#                      <button class="btn-wishlist" type="button" data-bs-toggle="tooltip" title="اضافه کردن به علاقه مندی"><i class="ci-heart"></i></button>#}
-{#                    </div>#}
-{#                    <div class="mb-3"><span class="h3 fw-normal text-accent me-1">18.<small>99</small></span>#}
-{#                      <del class="text-muted fs-lg me-3">25.<small>00</small></del><span class="badge bg-danger badge-shadow align-middle mt-n2">تخفیف</span>#}
-{#                    </div>#}
-{#                    <div class="fs-sm mb-4"><span class="text-heading fw-medium me-1">رنگ:</span><span class="text-muted" id="colorOptionText">قرمز/تاریک</span></div>#}
-{#                    <div class="position-relative me-n4 mb-3">#}
-{#                      <div class="form-check form-option form-check-inline mb-2">#}
-{#                        <input class="form-check-input" type="radio" name="color" id="color1" data-bs-label="colorOptionText" value="قرمز/تاریک" checked>#}
-{#                        <label class="form-option-label rounded-circle" for="color1"><span class="form-option-color rounded-circle" style="background-image: url(img/shop/single/color-opt-1.png)"></span></label>#}
-{#                      </div>#}
-{#                      <div class="form-check form-option form-check-inline mb-2">#}
-{#                        <input class="form-check-input" type="radio" name="color" id="color2" data-bs-label="colorOptionText" value="سفید/سیاه">#}
-{#                        <label class="form-option-label rounded-circle" for="color2"><span class="form-option-color rounded-circle" style="background-image: url(img/shop/single/color-opt-2.png)"></span></label>#}
-{#                      </div>#}
-{#                      <div class="form-check form-option form-check-inline mb-2">#}
-{#                        <input class="form-check-input" type="radio" name="color" id="color3" data-bs-label="colorOptionText" value="سفید/سیاه">#}
-{#                        <label class="form-option-label rounded-circle" for="color3"><span class="form-option-color rounded-circle" style="background-image: url(img/shop/single/color-opt-3.png)"></span></label>#}
-{#                      </div>#}
-{#                      <div class="product-badge product-available mt-n1"><i class="ci-security-check"></i>ویژگی محصول</div>#}
-{#                    </div>#}
-{#                    <form class="mb-grid-gutter">#}
-{#                      <div class="mb-3">#}
-{#                        <label class="fw-medium pb-1" for="product-size">سایز : </label>#}
-{#                        <select class="form-select" required id="product-size">#}
-{#                          <option value="">انتخاب سایز</option>#}
-{#                          <option value="xs">XS</option>#}
-{#                          <option value="s">S</option>#}
-{#                          <option value="m">M</option>#}
-{#                          <option value="l">L</option>#}
-{#                          <option value="xl">XL</option>#}
-{#                        </select>#}
-{#                      </div>#}
-{#                      <div class="mb-3 d-flex align-items-center">#}
-{#                        <select class="form-select me-3" style="width: 5rem;">#}
-{#                          <option value="1">1</option>#}
-{#                          <option value="2">2</option>#}
-{#                          <option value="3">3</option>#}
-{#                          <option value="4">4</option>#}
-{#                          <option value="5">5</option>#}
-{#                        </select>#}
-{#                        <button class="btn btn-primary btn-shadow d-block w-100" type="submit"><i class="ci-cart fs-lg me-2"></i>اضافه کردن به سبدخرید</button>#}
-{#                      </div>#}
-{#                    </form>#}
-{#                    <h5 class="h6 mb-3 pb-2 border-bottom"><i class="ci-announcement text-muted fs-lg align-middle mt-n1 me-2"></i>اطلاعات محصول</h5>#}
-{#                    <h6 class="fs-sm mb-2">سبک</h6>#}
-{#                    <ul class="fs-sm ps-4">#}
-{#                      <li>بالا</li>#}
-{#                    </ul>#}
-{#                    <h6 class="fs-sm mb-2">ترکیب بندی</h6>#}
-{#                    <ul class="fs-sm ps-4">#}
-{#                        <li>دنده الاستیک: پنبه 95 </li>#}
-{#                        <li>پوشش: پنبه 100</li>#}
-{#                     <li>پنبه 80٪ ، پلی استر 20٪</li>#}
-{#                    </ul>#}
-{#                    <h6 class="fs-sm mb-2">هنری</h6>#}
-{#                    <ul class="fs-sm ps-4 mb-0">#}
-{#                      <li>183260098</li>#}
-{#                    </ul>#}
-{#                  </div>#}
-{#                </div>#}
-{#              </div>#}
-{#            </div>#}
-{#          </div>#}
-{#        </div>#}
-{#      </div>#}
-      <!-- Navbar 3 Level (Light)-->
-{#      <header class="shadow-sm">#}
-        <!-- Topbar-->
-{#        <div class="topbar topbar-dark bg-dark">#}
-{#          <div class="container">#}
-{#            <div class="topbar-text dropdown d-md-none"><a class="topbar-link dropdown-toggle" href="#" data-bs-toggle="dropdown">لینک ها</a>#}
-{#              <ul class="dropdown-menu">#}
-{#                <li><a class="dropdown-item" href="tel:00331697720"><i class="ci-support text-muted me-2"></i>09162352304</a></li>#}
-{#                <li><a class="dropdown-item" href="order-tracking.html"><i class="ci-location text-muted me-2"></i>رهیگیری سفارش</a></li>#}
-{#              </ul>#}
-{#            </div>#}
-{#            <div class="topbar-text text-nowrap d-none d-md-inline-block"><i class=""><img src="{% static 'images/icons8-headphone-50.png' %}" width="20" alt="headphone"></i><span class="text-muted me-1">پشتیبانی</span><a class="topbar-link" href="tel:00331697720">0930-836-3863</a></div>#}
-{#            <div class="tns-carousel  tns-controls-static d-none d-md-block">#}
-{#              <div class="tns-carousel-inner" data-carousel-options="{&quot;mode&quot;: &quot;gallery&quot;, &quot;nav&quot;: false}">#}
-{#                 <div class="topbar-text">ارسال رایگان با سفارش بیش از 200 </div>#}
-{#                <div class="topbar-text">ما ظرف 30 روز پول برمی گردانیم</div>#}
-{#               <div class="topbar-text">دوستانه 24/7 پشتیبانی مشتری</div>#}
-{#              </div>#}
-{#            </div>#}
-{#            <div class="ms-3 text-nowrap"><a class="topbar-link me-4 d-none d-md-inline-block" href="order-tracking.html"><i class=""><img src="{% static 'images/icons8-location-50.png' %}" width="20" alt="loc"></i>رهیگیری سفارش</a>#}
-{#              <div class="topbar-text dropdown disable-autohide"><a class="topbar-link dropdown-toggle" href="#" data-bs-toggle="dropdown"><img class="me-2" src="{% static 'images/icons8-united-states-48.png' %}" width="20" alt="English">انگلیسی</a>#}
-{#                <ul class="dropdown-menu dropdown-menu-end">#}
-{#                  <li class="dropdown-item">#}
-{#                    <select class="form-select form-select-sm">#}
-{#                      <option value="usd">دلار</option>#}
-{#                      <option value="eur">تومان</option>#}
-{#                       <option value="ukp">یورو</option>#}
-{#                           <option value="jpy">پوند</option>#}
-{#                    </select>#}
-{#                  </li>#}
-{#                  <li><a class="dropdown-item pb-1" href="#"><img class="me-2" src="img/flags/fr.png" width="20" alt="فرانسه">فرانسه</a></li>#}
-{#                   <li><a class="dropdown-item pb-1" href="#"><img class="me-2" src="img/flags/de.png" width="20" alt="آلمان">آلمان</a></li>#}
-{#                  <li><a class="dropdown-item" href="#"><img class="me-2" src="img/flags/it.png" width="20" alt="ایتالیا">ایتالیا</a></li>#}
-{#                </ul>#}
-{#              </div>#}
-{#            </div>#}
-{#          </div>#}
-{#        </div>#}
-        <!-- Remove "navbar-sticky" class to make navigation bar scrollable with the page.-->
+
         <div class="navbar-sticky bg-light">
           <div class="navbar navbar-expand-lg navbar-light">
             <div class="container">
@@ -159,9 +20,9 @@
 {#                  <div class="navbar-tool-text ms-n3"><small>سلام وارد شوید</small>حساب من</div></a>#}
                 {% if request.user.is_authenticated %}
                     {% if request.user.is_superuser %}
-                        <a class="nav-item dropdown" href="admin/"> پنل مدیریت ادمین  <a/>
+                        <a class="nav-item dropdown" href="admin"> پنل مدیریت ادمین  <a/>
                         {% else %}
-                        <a  class="nav-item dropdown" href=""> پنل کاربری  <a/>
+                        <a  class="nav-item dropdown" href="edit_profile_page"> پنل کاربری  <a/>
                     {% endif %}
                     {% else %}
                     <a   href="{% url 'login_page' %}"> ورود  </a> /
@@ -170,7 +31,9 @@
 
                     
                   {% endif %}
-                  <div class="navbar-tool dropdown ms-3"><a class="navbar-tool-icon-box bg-secondary dropdown-toggle" href="shop-cart.html"><span class="navbar-tool-label">4</span><i class="navbar-tool-icon "><img src="{% static 'images/icons8-cart-24.png' %}"></i></a><a class="navbar-tool-text" href="shop-cart.html"><small>سبدخرید</small>25600</a>
+                  <div class="navbar-tool dropdown ms-3">
+                      <a class="navbar-tool-icon-box bg-secondary dropdown-toggle" href="{% url 'user-basket' %}"><span class="navbar-tool-label">4</span><i class="navbar-tool-icon "><img src="{% static 'images/icons8-cart-24.png' %}"></i></a>
+                      <a class="navbar-tool-text" href="{% url 'user-basket' %}"><small>سبدخرید</small>25600</a>
                   <!-- Cart dropdown-->
                   <div class="dropdown-menu dropdown-menu-end">
                     <div class="widget widget-cart px-3 pt-2 pb-3" style="width: 20rem;">
@@ -219,6 +82,7 @@
                   </div>
                 </div>
               </div>
+           
             </div>
           </div>
           <div class="navbar navbar-expand-lg navbar-light navbar-stuck-menu mt-n2 pt-0 pb-2">
@@ -238,7 +102,7 @@
                       <a class="nav-link dropdown-toggle" href="{% url 'product_list' %}" >فروشگاه</a>
                     </li>
                     <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#"  >وبلاگ</a>
+                      <a class="nav-link dropdown-toggle" href="{% url 'article_list' %}"  >وبلاگ</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="{% url 'contact_page' %}" >ارتباط با ما</a>
@@ -248,7 +112,6 @@
             </div>
           </div>
         </div>
-      </header>
       <!-- Page Title-->
       <div class="page-title-overlap bg-dark pt-4">
         <div class="container d-lg-flex justify-content-between py-2 py-lg-3">
@@ -263,7 +126,11 @@
             </nav>
           </div>
           <div class="order-lg-1 pe-lg-4 text-center text-lg-start">
-            <h1 class="h3 text-light mb-0">{{ product.Ptitle }}</h1>
+            <h1 class="h3 text-light mb-0">
+            {% block name %}
+                
+            {% endblock %}
+            </h1>
           </div>
         </div>
       </div>

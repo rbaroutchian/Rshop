@@ -1,0 +1,79 @@
+{% extends 'home.html' %}
+{% load render_partial %}
+{% block page_title %}
+
+{% endblock page_title %}
+
+{% block page_content %}
+<!-- Page Title-->
+      <div class="page-title-overlap bg-dark pt-4">
+        <div class="container d-lg-flex justify-content-between py-2 py-lg-3">
+          <div class="order-lg-2 mb-3 mb-lg-0 pt-lg-2">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb breadcrumb-light flex-lg-nowrap justify-content-center justify-content-lg-start">
+                <li class="breadcrumb-item"><a class="text-nowrap" href="index-2.html"><i class="ci-home"></i>خانه</a></li>
+                <li class="breadcrumb-item text-nowrap"><a href="#">حساب کاربری</a>
+                </li>
+                <li class="breadcrumb-item text-nowrap active" aria-current="page">پروفایل</li>
+              </ol>
+            </nav>
+          </div>
+          <div class="order-lg-1 pe-lg-4 text-center text-lg-start">
+            <h1 class="h3 text-light mb-0">آدرس های من</h1>
+          </div>
+        </div>
+      </div>
+      <div class="container pb-5 mb-2 mb-md-4">
+        <div class="row">
+
+            {% render_partial 'user_panel_module.views.user_panel_menu_component' %}
+             <!-- Content  -->
+          <section class="col-lg-8">
+            <!-- Toolbar-->
+            <div class="d-none d-lg-flex justify-content-between align-items-center pt-lg-3 pb-4 pb-lg-5 mb-lg-3">
+              <h6 class="fs-base text-light mb-0">لیست آدرس های خود را به روز کنید:</h6><a class="btn btn-primary btn-sm" href="account-signin.html"><i class="ci-sign-out me-2"></i>خروج</a>
+            </div>
+            <!-- Addresses list-->
+              <div class="table-responsive fs-md">
+                <table class="table table-hover mb-0">
+                  <thead>
+                    <tr>
+                    <th>نشانی</th>
+                      <th>اقدامات</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                      <td class="py-3 align-middle">{{ address_org }}<span class="align-middle badge bg-info ms-2">اصلی</span></td>
+                      <td class="py-3 align-middle"><a class="nav-link-style me-2" href="#" data-bs-toggle="tooltip" title="ویرایش"><i class="ci-edit"></i></a><a class="nav-link-style text-danger" href="#" data-bs-toggle="tooltip" title="حذف">
+                          <div class="ci-trash"></div></a></td>
+                    </tr>
+                  {% for address in other_addresses %}
+                    {% include 'includes/address.html' %}
+                  {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+          <div class="container py-4">
+    <h5>افزودن آدرس جدید</h5>
+    <form method="post" action="{% url 'edit_address_page' %}">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="address" class="form-label"> آدرس جدید را وارد کنید</label>
+            <textarea name="address" id="address" class="form-control" rows="2" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-success">ذخیره آدرس</button>
+    </form>
+</div>
+          {% if messages %}
+  <ul>
+    {% for message in messages %}
+      <li class="alert alert-{{ message.tags }}">{{ message }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
+          </section>
+        </div>
+      </div>
+
+{% endblock page_content %}

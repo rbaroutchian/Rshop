@@ -4,6 +4,8 @@ from django.utils.text import slugify
 from django.urls import reverse
 from unidecode import unidecode
 
+from account_module.models import User
+
 
 # Create your models here.
 
@@ -61,7 +63,7 @@ class Product(models.Model):
     # Pinfo = models.OneToOneField(ProductInfo, on_delete=models.CASCADE, null=True,
     #                              related_name='product_info',
     #                              verbose_name='اطلاعات تکمیلی',)
-    Pcategory = models.ManyToManyField(ProductCategory, null=True, related_name='products', verbose_name='دسته بندی')
+    Pcategory = models.ManyToManyField(ProductCategory, blank=True, related_name='products', verbose_name='دسته بندی')
     product_tag = models.ManyToManyField(ProductTag, verbose_name='تگ های محصول')
     #protect برای محافظت کردن می باشد
     #casade برای این است که اگر اون دسته بندی پاک شد همه محصولات آن پاک می شود
@@ -90,3 +92,23 @@ class Product(models.Model):
     class Meta:
         verbose_name='محصول'
         verbose_name_plural= 'محصولات'
+
+
+class ProductComment(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='محصول')
+    parent = models.ForeignKey('ProductComment', null=True, blank=True,
+                               on_delete=models.CASCADE, related_name='parentcomment', verbose_name='والد')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, verbose_name='کاربر')
+    create_date = models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ثبت')
+    text = models.TextField(verbose_name='متن نظر')
+    name = models.CharField(max_length=100, null=True, blank=True, verbose_name='نام و نم خانوادگی')
+    email = models.EmailField(null=True, blank=True, verbose_name='ایمیل')
+
+    def __str__(self):
+        return str(self.user)
+
+    class Meta:
+        verbose_name = 'نظر محصول'
+        verbose_name_plural = 'نظرات محصول'
+
+

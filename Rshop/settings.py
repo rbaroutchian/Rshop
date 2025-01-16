@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'sorl.thumbnail',
     'jalali_date',
     'polls',
+    'user_panel_module',
+    'order_module'
 
 ]
 
@@ -74,6 +76,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'site_moduel.context_processors.site_settings',
+                'blog.context_processors.article_header_title'
             ],
         },
     },

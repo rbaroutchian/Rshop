@@ -227,7 +227,7 @@
                     {% if request.user.is_superuser %}
                         <a class="nav-item dropdown" href="admin/"> پنل مدیریت ادمین  <a/>
                         {% else %}
-                        <a  class="nav-item dropdown" href=""> پنل کاربری  <a/>
+                        <a  class="nav-item dropdown" href="{% url 'edit_profile_page' %}"> پنل کاربری  <a/>
                     {% endif %}
                     {% else %}
                     <a   href="{% url 'login_page' %}"> ورود  </a> /
@@ -236,7 +236,11 @@
 
                     
                   {% endif %}
-                  <div class="navbar-tool dropdown ms-3"><a class="navbar-tool-icon-box bg-secondary dropdown-toggle" href="shop-cart.html"><span class="navbar-tool-label">4</span><i class="navbar-tool-icon ci-cart"></i></a><a class="navbar-tool-text" href="shop-cart.html"><small>سبدخرید</small>25600</a>
+                  <div class="navbar-tool dropdown ms-3">
+                      <a class="navbar-tool-icon-box bg-secondary dropdown-toggle" href="{% url 'user-basket' %}">
+                      <span class="navbar-tool-label">4</span>
+                      <i class="navbar-tool-icon ci-cart"></i></a>
+                      <a class="navbar-tool-text" href="{% url 'user-basket' %}"><small>سبدخرید</small>25600</a>
                   <!-- Cart dropdown-->
                   <div class="dropdown-menu dropdown-menu-end">
                     <div class="widget widget-cart px-3 pt-2 pb-3" style="width: 20rem;">
@@ -304,7 +308,7 @@
                       <a class="nav-link dropdown-toggle" href="{% url 'product_list' %}" >فروشگاه</a>
                     </li>
                     <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#"  >وبلاگ</a>
+                      <a class="nav-link dropdown-toggle" href="{% url 'article_list' %}"  >وبلاگ</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="{% url 'contact_page' %}" >ارتباط با ما</a>
@@ -315,3 +319,4 @@
         </div>
       </header>
         
+    </main>

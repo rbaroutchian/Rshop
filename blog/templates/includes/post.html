@@ -1,24 +1,15 @@
 {% load static %}            
-<article class="masonry-grid-item">
-              <div class="card">
-                  <a class="blog-entry-thumb" href="#">
-                      <img class="card-img-top" src="{{ article.image.url }}" alt="{{ article.title }}">
-                  </a>
-                <div class="card-body">
-                  <h2 class="h6 blog-entry-title">
-                      <a href="#">{{ article.title }}</a></h2>
-                  <p class="fs-sm">{{ article.short_description }}</p>
+<article class="blog-list border-bottom pb-4 mb-5">
+              <div class="blog-start-column">
+                <div class="d-flex align-items-center fs-sm pb-2 mb-1"><a class="blog-entry-meta-link" href="{{ article.get_absolute_url }}">
+                    <div class="blog-entry-author-ava"><img src="{{ article.image.url }}" alt="رافائل مارکز"></div>{{ article.title }}</a><span class="blog-entry-meta-divider"></span><a class="blog-entry-meta-link" href="{{ article.get_absolute_url }}">25 تیر</a></div>
+                <h2 class="h5 blog-entry-title"><a href="{{ article.get_absolute_url }}">{{ article_short_description}}</a></h2>
+              </div>
+              <div class="blog-end-column"><a class="blog-entry-thumb mb-3" href="{{ article.get_absolute_url }}"><img src="{{ article.image.url}}" alt="Post"></a>
+                <div class="d-flex justify-content-between mb-1">
+                  <div class="fs-sm text-muted pe-2 mb-2">در<a  href='{{ article.get_absolute_url }}' class='blog-entry-meta-link'>سفر</a>, <a href='{{ article.get_absolute_url }}' class='blog-entry-meta-link'>مد</a></div>
+                  <div class="fs-sm mb-2"><a class="blog-entry-meta-link text-nowrap" href="{{ article.get_absolute_url }}"><i class="ci-message"></i>19</a></div>
                 </div>
-                <div class="card-footer d-flex align-items-center fs-xs"><a class="blog-entry-meta-link" href="#">
-                    <div class="blog-entry-author-ava">
-                {% if article.author is not None %}
-                    <img src="{% static 'images/meta/01.jpg' %} " alt="{{ article.author }}"></div>
-                	{{ article.author }}
-                {% endif %}
-                    </a>
-                  <div class="ms-auto text-nowrap"><a class="blog-entry-meta-link text-nowrap" href="#">25 تیر</a><span class="blog-entry-meta-divider mx-2"></span><a class="blog-entry-meta-link text-nowrap" href="blog-single.html#comments"><i class="">
-                      <img src="{% static 'images/icons8-comment-24.png' %}"  alt="#">
-                  </i>8</a></div>
-                </div>
+                <p class="fs-sm">{{ article.text }} <a href='{{ article.get_absolute_url }}' class='blog-entry-meta-link fw-medium'>[بیشتر]</a></p>
               </div>
             </article>

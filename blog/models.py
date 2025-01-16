@@ -5,7 +5,9 @@ from django.urls import reverse
 
 
 class ArticleCategory(models.Model):
-    parent = models.ForeignKey('ArticleCategory', null=True, blank=True, on_delete=models.CASCADE,
+    parent = models.ForeignKey('ArticleCategory', null=True,
+                               related_name='parentarticlecategory',
+                               blank=True, on_delete=models.CASCADE,
                                verbose_name='دسته بندی والد')
     title = models.CharField(max_length=200, verbose_name='عنوان دسته بندی')
     url_title = models.CharField(max_length=200, unique=True, verbose_name='عنوان در url')
@@ -30,6 +32,9 @@ class Article(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='نویسنده', null=True, editable=True)
     created_date = models.DateTimeField(auto_now_add=True, editable=False, verbose_name='تاریخ ثبت')
 
+    def get_absolute_url(self):
+        return reverse('article_detail', args=[self.id])
+
     def __str__(self):
         return self.title
 
@@ -47,10 +52,12 @@ class Article(models.Model):
 class ArticleComment(models.Model):
     article = models.ForeignKey(Article, on_delete=models.CASCADE, verbose_name='مقاله')
     parent = models.ForeignKey('ArticleComment', null=True, blank=True,
-                               on_delete=models.CASCADE, verbose_name='والد')
-    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='کاربر')
+    on_delete=models.CASCADE, related_name='parentcomment', verbose_name='والد')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, verbose_name='کاربر')
     create_date = models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ثبت')
-    text = models.TextField(verbose_name='متن نظر')
+    text = models.TextField(verbose_name='متن نظر', default='نظر')
+    name = models.CharField(max_length=100, null=True, blank=True, verbose_name='نام و نم خانوادگی')
+    email = models.EmailField(null=True, blank=True, verbose_name='ایمیل')
 
     def __str__(self):
         return str(self.user)

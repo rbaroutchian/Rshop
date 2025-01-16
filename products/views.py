@@ -1,7 +1,11 @@
-from django.http import HttpRequest
-from django.shortcuts import render, get_object_or_404
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.http import HttpRequest, HttpResponse
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic.base import TemplateView
-from products.models import Product, ProductCategory
+
+from products.forms import ProductCommentForm
+from products.models import Product, ProductCategory, ProductComment
 from django.views.generic import ListView, DetailView
 
 
@@ -46,6 +50,76 @@ class productDetailView(DetailView):
     template_name = 'product_moduels/product_detail.html'
     model = Product
 
+    def get_queryset(self):
+        query = super(productDetailView, self).get_queryset()
+        query = query.filter(is_active=True)
+        return query
+
+    def get_context_data(self, **kwargs):
+        context = super(productDetailView, self).get_context_data(**kwargs)
+        product: Product = kwargs.get('object')
+        context['comments'] = ProductComment.objects.filter(product=product, parent=None).order_by('create_date').prefetch_related('parentcomment')
+        context['comments_count'] = ProductComment.objects.filter(product=product).count()
+        context['comment_form'] = ProductCommentForm()
+
+        return context
+
+    def post(self, request, *args, **kwargs):
+        product = self.get_object()
+        form = ProductCommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.product = product
+            if request.user.is_authenticated:
+                comment.user = request.user
+            comment.save()
+            return redirect(product.get_absolute_url())
+        return self.get(request, *args, **kwargs)
+
+
+
+def add_product_comment(request: HttpRequest):
+    if request.user.is_authenticated:
+        product_id = request.GET.get('product_id')
+        product_comment = request.GET.get('product_comment')
+        parent_id = request.GET.get('parent_id')
+        print(product_id, product_comment, parent_id)
+        new_comment = ProductComment(product_id=product_id,
+                                     text=product_comment,
+                                     user_id=request.user.id,
+                                     parent_id=parent_id)
+        new_comment.save()
+        context = {
+            'comments': ProductComment.objects.filter(product_id=product_id,
+                        parent=None).order_by('_create_date').prefetch_related('productcomment.set'),
+            'comment_count': ProductComment.objects.filter(product_id=product_id).count()
+        }
+
+        return render(request, 'product_moduels/includes/product_comment_partial.html', context)
+
+    return HttpResponse('response')
+
+
+
+
+
+
+
+
+
+
+
+
+
+# def product_component(request: HttpRequest):
+#     product_comment = ProductComment.objects.filter(product_id=True, parent=None)
+#
+#     context = {
+#         'comments': product_comment
+#     }
+#     return render(request, 'product_moduels/components/product_comment.html',
+#                     context)
+
     # def get_context_data(self, **kwargs):
     #     context = super(productDetailView, self).get_context_data()
     #     slug = kwargs['slug']
@@ -85,8 +159,8 @@ def index(request):
 #                   {'product': product})
 
 def site_header_component(request):
-    context = {
-        'link': 'آموزشی'
+    context= {
+        'name': 'مقالات'
     }
     return render(request, 'header_component.html', context)
 

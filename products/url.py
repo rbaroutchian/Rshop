@@ -8,4 +8,4 @@ urlpatterns = ([
     path('pro/<str:category>', views.productListView.as_view(), name='product_by_category'),
     path('<str:slug>', views.productDetailView.as_view(), name='detail'),
 
-    ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT))
+               ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT))

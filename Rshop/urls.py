@@ -26,6 +26,8 @@ urlpatterns = [
     path('contact/', include('contact_moduels.url')),
     path('post/', include('blog.url')),
     path('account/', include('account_module.url')),
+    path('dashboard/', include('user_panel_module.url')),
+    path('order/', include('order_module.url'))
 
 ]
 if settings.DEBUG:

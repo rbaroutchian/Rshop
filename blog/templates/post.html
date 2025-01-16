@@ -1,54 +1,114 @@
 {% extends 'base.html'%}
-
+{% load render_partial %}
 {% load static %}
+
 {% block page_title %}
 blog page
 {% endblock page_title %}
 
+{% block name %}
+{% endblock %}
 
 {% block page_content %}
 
-<div class="container pb-5 mb-2 mb-md-4">
-        <!-- Featured posts carousel-->
-        <hr class="mt-5">
-        <div class="pt-5 mt-md-2">
-          <!-- Entries grid-->
-          <div class="masonry-grid" data-columns="3">
+<div class="row pt-5 mt-2">
+
+          <!-- Entries list-->
+          <section class="col-lg-8">
+
             <!-- Entry-->
+            {% for article in articles %}
+                {% include 'includes/post.html' %}
+
+              {% endfor %}
 
 
-          {% for article in articles %}
-          	{% include 'includes/post.html' %}
-          {% endfor %}
+            <!-- Pagination-->
+            <nav class="d-flex justify-content-between pt-2" aria-label="Page navigation">
+              <ul class="pagination">
+                <li class="page-item"><a class="page-link" href="#"><i class="ci-arrow-left me-2"></i>قبلی</a></li>
+              </ul>
+              <ul class="pagination">
+                <li class="page-item d-sm-none"><span class="page-link page-link-static">1 / 5</span></li>
+                <li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link">1<span class="visually-hidden">(جاری)</span></span></li>
+                <li class="page-item d-none d-sm-block"><a class="page-link" href="#">2</a></li>
+                <li class="page-item d-none d-sm-block"><a class="page-link" href="#">3</a></li>
+                <li class="page-item d-none d-sm-block"><a class="page-link" href="#">4</a></li>
+                <li class="page-item d-none d-sm-block"><a class="page-link" href="#">5</a></li>
+              </ul>
+              <ul class="pagination">
+                <li class="page-item"><a class="page-link" href="#" aria-label="Next">بعدی<i class="ci-arrow-right ms-2"></i></a></li>
+              </ul>
+            </nav>
+          </section>
+          <aside class="col-lg-4">
+            <!-- Sidebar-->
+            <div class="offcanvas offcanvas-collapse offcanvas-end border-start ms-lg-auto" id="blog-sidebar" style="max-width: 22rem;">
+              <div class="offcanvas-header align-items-center shadow-sm">
+                <h2 class="h5 mb-0">منو</h2>
+                <button class="btn-close ms-auto" type="button" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+              </div>
+              <div class="offcanvas-body py-grid-gutter py-lg-1 px-lg-4" data-simplebar data-simplebar-auto-hide="true">
+                <!-- Categories-->
+                <div class="widget widget-links mb-grid-gutter pb-grid-gutter border-bottom mx-lg-2">
+                  <h3 class="widget-title">دسته بندی خبر</h3>
+                    {% render_partial 'blog.views.article_categories_component' %}
+{#
+                </div>
 
-
-          
-
-          </div>
-          <hr class="mb-4">
-          <!-- Pagination-->
-          <nav class="d-flex justify-content-between pt-2" aria-label="Page navigation">
-            <ul class="pagination">
-              <li class="page-item"><a class="page-link" href="#"><i class="">
-                  <img src="{% static 'images/icons8-chevron-r(1).png' %}"  alt="#">
-              </i>قبلی</a></li>
-            </ul>
-            <ul class="pagination">
-              <li class="page-item d-sm-none"><span class="page-link page-link-static">1 / 5</span></li>
-              <li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link">1<span class="visually-hidden">(جاری)</span></span></li>
-              <li class="page-item d-none d-sm-block"><a class="page-link" href="#">2</a></li>
-              <li class="page-item d-none d-sm-block"><a class="page-link" href="#">3</a></li>
-              <li class="page-item d-none d-sm-block"><a class="page-link" href="#">4</a></li>
-              <li class="page-item d-none d-sm-block"><a class="page-link" href="#">5</a></li>
-            </ul>
-            <ul class="pagination">
-              <li class="page-item"><a class="page-link" href="#" aria-label="Next">بعدی<i class="">
-                  <img src="{% static 'images/icons8-chevron-24.png' %}"  alt="#">
-              </i></a></li>
-            </ul>
-          </nav>
+              </div>
+            </div>
+          </aside>
         </div>
-      </div>
+
+
+
+
+
+{#<div class="container pb-5 mb-2 mb-md-4">#}
+{#        <!-- Featured posts carousel-->#}
+{#        <hr class="mt-5">#}
+{#        <div class="pt-5 mt-md-2">#}
+{#          <!-- Entries grid-->#}
+{#          <div class="masonry-grid" data-columns="3">#}
+{#            <!-- Entry-->#}
+{##}
+{##}
+{#          {% for article in articles %}#}
+{#          	{% include 'includes/post.html' %}#}
+{#          {% endfor %}#}
+{##}
+{##}
+{#          #}
+{##}
+{#          </div>#}
+{#          <hr class="mb-4">#}
+{##}
+{##}
+{##}
+{#          <!-- Pagination-->#}
+{#          <nav class="d-flex justify-content-between pt-2" aria-label="Page navigation">#}
+{#            <ul class="pagination">#}
+{#              <li class="page-item"><a class="page-link" href="#"><i class="">#}
+{#                  <img src="{% static 'images/icons8-chevron-r(1).png' %}"  alt="#">#}
+{#              </i>قبلی</a></li>#}
+{#            </ul>#}
+{#            <ul class="pagination">#}
+{#              <li class="page-item d-sm-none"><span class="page-link page-link-static">1 / 5</span></li>#}
+{#              <li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link">1<span class="visually-hidden">(جاری)</span></span></li>#}
+{#              <li class="page-item d-none d-sm-block"><a class="page-link" href="#">2</a></li>#}
+{#              <li class="page-item d-none d-sm-block"><a class="page-link" href="#">3</a></li>#}
+{#              <li class="page-item d-none d-sm-block"><a class="page-link" href="#">4</a></li>#}
+{#              <li class="page-item d-none d-sm-block"><a class="page-link" href="#">5</a></li>#}
+{#            </ul>#}
+{#            <ul class="pagination">#}
+{#              <li class="page-item"><a class="page-link" href="#" aria-label="Next">بعدی<i class="">#}
+{#                  <img src="{% static 'images/icons8-chevron-24.png' %}"  alt="#">#}
+{#              </i></a></li>#}
+{#            </ul>#}
+{#          </nav>#}
+{#        </div>#}
+{#      </div>#}
 
 
 

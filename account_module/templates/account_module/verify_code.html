@@ -1,0 +1,46 @@
+{% extends 'home.html' %}
+{% block page_title %}
+
+صفحه تایید
+
+{% endblock page_title %}
+{% block page_content %}
+
+
+
+<div class="container py-4 py-lg-5 my-4">
+        <div class="row">
+            <center>
+                          <div class="col-md-6">
+            <div class="card border-0 shadow">
+              <div class="card-body">
+                <h2 class="h4 mb-1">تایید کد فعالسازی</h2>
+                <div class="py-3">
+                </div>
+                <hr>
+                <form method="post" action="{% url 'verify_code_page' %}" class="needs-validation" novalidate >
+                    {% csrf_token %}
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+                <label for="verification_code">کد تأیید:</label>
+                <input type="text" name="verification_code" id="verification_code" required>
+
+                  <hr class="mt-4">
+                  <div class="text-end pt-4">
+                    <button class="btn btn-primary" type="submit"><i class="ci-sign-in me-2 ms-n21"></i>تایید و ورود به پنل کاربری</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+            </center>
+        </div>
+      </div>
+
+
+
+
+
+{% endblock page_content %}

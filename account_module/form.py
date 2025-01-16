@@ -13,6 +13,13 @@ class RegisterForm(forms.Form):
             'placeholder': 'ایمیل'
         })
     )
+    Phone_number = forms.CharField(
+        label='موبایل',
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'موبایل'
+        })
+    )
     Password = forms.CharField(
         label='رمز عبور',
         widget=forms.PasswordInput(attrs={
@@ -58,12 +65,18 @@ class RegisterModelForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('email', 'username', 'password', 'confirm_password')
+        fields = ('email', 'mobile', 'username', 'password', 'confirm_password')
         widgets = {
             'email': forms.EmailInput(attrs={
                 'class': 'form-control',
                 'placeholder': 'ایمیل',
                 'autocomplete': 'email',
+                'style': 'border: 1px solid #00b894; padding: 10px; font-size: 14px;'
+            }),
+            'mobile': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'موبایل',
+                'autocomplete': 'mobile',
                 'style': 'border: 1px solid #00b894; padding: 10px; font-size: 14px;'
             }),
             'username': forms.TextInput(attrs={

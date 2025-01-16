@@ -1,9 +1,16 @@
 {% extends 'base.html' %}
+{% load render_partial %}
+
 {% load static %}
 {% block page_title %}
 
 {% endblock page_title %}
 
+
+{##}
+{#{% block header_ref %}#}
+{#	<link href="{% static 'js/custom.js' %}">#}
+{#{% endblock %}#}
 
 {% block page_content %}
 
@@ -45,7 +52,7 @@
                     <button class="btn-wishlist me-0 me-lg-n3" type="button" data-bs-toggle="tooltip" title="اضافه کردن به علاقه مندی"><i class="ci-heart"></i></button>
                   </div>
                   <div class="mb-3">
-                      <span class="h3 fw-normal text-accent me-1">{{ product.Pprice }}</span>
+                      <span class="h3 fw-normal text-accent me-1">{{ product.Ptitle }}</span>
                       <span>نام برند: {{ product.ProductBrand.title }}</span>
                     <del class="text-muted fs-lg me-3"></del><span class="badge bg-danger badge-shadow align-middle mt-n2">قیمت</span>
                   </div>
@@ -65,31 +72,43 @@
                     </div>
                     <div class="product-badge product-available mt-n1"><i class="ci-security-check"></i>ویژگی محصول</div>
                   </div>
-                  <form class="mb-grid-gutter" method="post">
+
+
+
+                  <form action="" class="mb-grid-gutter" method="post" >
+                      {% csrf_token %}
                     <div class="mb-3">
                       <div class="d-flex justify-content-between align-items-center pb-1">
                         <label class="form-label" for="product-size">سایز : </label><a class="nav-link-style fs-sm" href="#size-chart" data-bs-toggle="modal"><i class="ci-ruler lead align-middle me-1 mt-n1"></i>سایز</a>
                       </div>
-                      <select class="form-select" required id="product-size">
-                        <option value="">انتخاب سایز</option>
-                        <option value="xs">XS</option>
-                        <option value="s">S</option>
-                        <option value="m">M</option>
-                        <option value="l">L</option>
-                        <option value="xl">XL</option>
-                      </select>
+{#                      <select class="form-select" required id="product-size">#}
+{#                        <option value="">انتخاب سایز</option>#}
+{#                        <option value="xs">XS</option>#}
+{#                        <option value="s">S</option>#}
+{#                        <option value="m">M</option>#}
+{#                        <option value="l">L</option>#}
+{#                        <option value="xl">XL</option>#}
+{#                      </select>#}
                     </div>
                     <div class="mb-3 d-flex align-items-center">
-                      <select class="form-select me-3" style="width: 5rem;">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                      </select>
-                      <button class="btn btn-primary btn-shadow d-block w-100" type="submit"><i class="ci-cart fs-lg me-2"></i>اضافه کردن به سبدخرید</button>
+{#                      <select class="form-select me-3" style="width: 5rem;">#}
+{#                        <option value="1">1</option>#}
+{#                        <option value="2">2</option>#}
+{#                        <option value="3">3</option>#}
+{#                        <option value="4">4</option>#}
+{#                        <option value="5">5</option>#}
+{#                      </select>#}
+                        <label>تعداد: </label>
+                        <input type="number" min="1" class="search-box" id="product_count">
+                      <button onclick="addProductToOrder({{ product.id }})" class="btn btn-primary btn-shadow d-block w-100" type="button">
+
+                          <i class="ci-cart fs-lg me-2"></i>اضافه کردن به سبدخرید</button>
+{#                        <a onclick="addProductToOrder({{ product.id }})" class="btn btn-primary btn-shadow d-block w-100">سبد خرید</a>#}
                     </div>
                   </form>
+
+
+
                   <!-- Product panels-->
                   <div class="accordion mb-4" id="productPanels">
                     <div class="accordion-item">
@@ -176,56 +195,7 @@
             </div>
           </div>
         </div>
-        <!-- Product description section 1-->
-      <div class="row align-items-center py-md-3">
-        <div class="col-lg-5 col-md-6 offset-lg-1 order-md-2"><img class="d-block rounded-3" src="img/shop/single/prod-img.jpg" alt="Image"></div>
-        <div class="col-lg-4 col-md-6 offset-lg-1 py-4 order-md-1">
-          <h2 class="h3 mb-4 pb-2">مواد با کیفیت بالا</h2>
-          <h6 class="fs-base mb-3">مخلوط پنبه نرم</h6>
-          <p class="fs-sm text-muted pb-2">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است</p>
-          <h6 class="fs-base mb-3">دستورالعمل شستشو</h6>
-          <ul class="nav nav-tabs mb-3" role="tablist">
-            <li class="nav-item"><a class="nav-link active" href="#wash" data-bs-toggle="tab" role="tab"><i class="ci-wash fs-xl"></i></a></li>
-            <li class="nav-item"><a class="nav-link" href="#bleach" data-bs-toggle="tab" role="tab"><i class="ci-bleach fs-xl"></i></a></li>
-            <li class="nav-item"><a class="nav-link" href="#hand-wash" data-bs-toggle="tab" role="tab"><i class="ci-hand-wash fs-xl"></i></a></li>
-            <li class="nav-item"><a class="nav-link" href="#ironing" data-bs-toggle="tab" role="tab"><i class="ci-ironing fs-xl"></i></a></li>
-            <li class="nav-item"><a class="nav-link" href="#dry-clean" data-bs-toggle="tab" role="tab"><i class="ci-dry-clean fs-xl"></i></a></li>
-          </ul>
-          <div class="tab-content text-muted fs-sm">
-            <div class="tab-pane fade show active" id="wash" role="tabpanel">30 درجه شستشوی ملایم</div>
-            <div class="tab-pane fade" id="bleach" role="tabpanel">از هیچ ماده سفید کننده استفاده نکنید</div>
-            <div class="tab-pane fade" id="hand-wash" role="tabpanel">شستشوی دستی طبیعی (30 درجه)</div>
-            <div class="tab-pane fade" id="ironing" role="tabpanel">اتوکشی در دمای پایین</div>
-            <div class="tab-pane fade" id="dry-clean" role="tabpanel">خشک تمیز نکنید</div>
-          </div>
-        </div>
-      </div>
-        <!-- Product description section 2-->
-      <div class="row align-items-center py-4 py-lg-5">
-        <div class="col-lg-5 col-md-6 offset-lg-1"><img class="d-block rounded-3" src="img/shop/single/prod-map.png" alt="Map"></div>
-        <div class="col-lg-4 col-md-6 offset-lg-1 py-4">
-          <h2 class="h3 mb-4 pb-2">کجا ساخته شده</h2>
-          <h6 class="fs-base mb-3">تولید کننده پوشاک ، آموزشی ویبولیتین</h6>
-          <p class="fs-sm text-muted pb-2">​ایران-یزد-شهرکرد</p>
-          <div class="d-flex mb-2">
-            <div class="me-4 pe-2 text-center">
-              <h4 class="h2 text-accent mb-1">3258</h4>
-              <p>کارگر</p>
-            </div>
-            <div class="me-4 pe-2 text-center">
-              <h4 class="h2 text-accent mb-1">43%</h4>
-              <p>زن</p>
-            </div>
-            <div class="text-center">
-              <h4 class="h2 text-accent mb-1">57%</h4>
-              <p>مرد</p>
-            </div>
-          </div>
-          <h6 class="fs-base mb-3">اطلاعات کارخانه</h6>
-          <p class="fs-sm text-muted pb-md-2">​لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است</p>
-        </div>
-      </div>
-      </div>
+
       <!-- Reviews-->
       <div class="border-top border-bottom my-lg-3 py-5">
         <div class="container pt-md-2" id="reviews">
@@ -294,78 +264,10 @@
                   </select>
                 </div>
               </div>
-              <!-- Review-->
-              <div class="product-review pb-4 mb-4 border-bottom">
-                <div class="d-flex mb-3">
-                  <div class="d-flex align-items-center me-4 pe-2"><img class="rounded-circle" src="img/shop/reviews/01.jpg" width="50" alt="رافائل مارکز">
-                    <div class="ps-3">
-                      <h6 class="fs-sm mb-0">رافائل مارکز</h6><span class="fs-ms text-muted">26 تیر 1400</span>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star"></i>
-                    </div>
-                    <div class="fs-ms text-muted">83٪ از کاربران این بررسی را مفید دانستند</div>
-                  </div>
-                </div>
-                <p class="fs-md mb-2">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است</p>
-                <ul class="list-unstyled fs-ms pt-1">
-                  <li class="mb-1"><span class="fw-medium">جوانب مثبت: </span>آنها از پیگیری فصول بسیار لذت می برند</li>
-                  <li class="mb-1"><span class="fw-medium">منفی ها:  </span>بسیار مبارک ، شما هستید</li>
-                </ul>
-                <div class="text-nowrap">
-                  <button class="btn-like" type="button">15</button>
-                  <button class="btn-dislike" type="button">3</button>
-                </div>
-              </div>
-              <!-- Review-->
-              <div class="product-review pb-4 mb-4 border-bottom">
-                <div class="d-flex mb-3">
-                  <div class="d-flex align-items-center me-4 pe-2"><img class="rounded-circle" src="img/shop/reviews/02.jpg" width="50" alt="جاناتان دوو">
-                    <div class="ps-3">
-                      <h6 class="fs-sm mb-0">جاناتان دوو</h6><span class="fs-ms text-muted">26 تیر 1400</span>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i>
-                    </div>
-                    <div class="fs-ms text-muted">83٪ از کاربران این بررسی را مفید دانستند</div>
-                  </div>
-                </div>
-                <p class="fs-md mb-2">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است</p>
-                <ul class="list-unstyled fs-ms pt-1">
-                  <li class="mb-1"><span class="fw-medium">جوانب مثبت: </span>آنها از پیگیری فصول بسیار لذت می برند</li>
-                  <li class="mb-1"><span class="fw-medium">منفی ها:  </span>بسیار مبارک ، شما هستید</li>
-                </ul>
-                <div class="text-nowrap">
-                  <button class="btn-like" type="button">34</button>
-                  <button class="btn-dislike" type="button">1</button>
-                </div>
-              </div>
-              <!-- Review-->
-              <div class="product-review pb-4 mb-4 border-bottom">
-                <div class="d-flex mb-3">
-                  <div class="d-flex align-items-center me-4 pe-2"><img class="rounded-circle" src="img/shop/reviews/03.jpg" width="50" alt="لورا ویلسون">
-                    <div class="ps-3">
-                      <h6 class="fs-sm mb-0">لورا ویلسون</h6><span class="fs-ms text-muted">26 تیر 1400</span>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star"></i><i class="star-rating-icon ci-star"></i>
-                    </div>
-                    <div class="fs-ms text-muted">83٪ از کاربران این بررسی را مفید دانستند</div>
-                  </div>
-                </div>
-                <p class="fs-md mb-2">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است</p>
-                <ul class="list-unstyled fs-ms pt-1">
-                  <li class="mb-1"><span class="fw-medium">جوانب مثبت: </span>آنها از پیگیری فصول بسیار لذت می برند</li>
-                  <li class="mb-1"><span class="fw-medium">منفی ها:  </span>بسیار مبارک ، شما هستید</li>
-                </ul>
-                <div class="text-nowrap">
-                  <button class="btn-like" type="button">26</button>
-                  <button class="btn-dislike" type="button">9</button>
-                </div>
-              </div>
+{#                <div class="pt-2 mt-5" id="comments">#}
+              <h2 class="h4">نظرات<span class="badge bg-secondary fs-sm text-body align-middle ms-2">{{ comments_count }}</span></h2>
+                {% include 'product_moduels/includes/product_comment_partial.html' %}
+
               <div class="text-center">
                 <button class="btn btn-outline-accent" type="button"><i class="ci-reload me-2"></i>بیشتر دیدن</button>
               </div>
@@ -375,41 +277,9 @@
               <div class="bg-secondary py-grid-gutter px-grid-gutter rounded-3">
                 <h3 class="h4 pb-2">یک بررسی بنویسید</h3>
                 <form class="needs-validation" method="post" novalidate>
-                  <div class="mb-3">
-                    <label class="form-label" for="review-name">نام شما<span class="text-danger">*</span></label>
-                    <input class="form-control" type="text" required id="review-name">
-                    <div class="invalid-feedback">نام را وارد کنید</div><small class="form-text text-muted">در نظر نمایش داده می شود</small>
-                  </div>
-                  <div class="mb-3">
-                    <label class="form-label" for="review-email">ایمیل شما<span class="text-danger">*</span></label>
-                    <input class="form-control" type="email" required id="review-email">
-                    <div class="invalid-feedback">آدرس ایمیل را وارد کنید</div><small class="form-text text-muted">فقط احراز هویت - شما را اسپم نمی کنیم.</small>
-                  </div>
-                  <div class="mb-3">
-                      <label class="form-label" for="review-rating">رتبه بندی<span class="text-danger">*</span></label>
-                    <select class="form-select" required id="review-rating">
-                       <option value="">انتخاب رتبه بندی</option>
-                      <option value="5">5 ستاره</option>
-                      <option value="4">4 ستاره</option>
-                      <option value="3">3 ستاره</option>
-                      <option value="2">2 ستاره</option>
-                      <option value="1">1 ستاره</option>
-                    </select>
-                     <div class="invalid-feedback">لطفاً رتبه بندی را انتخاب کنید!</div>
-                  </div>
-                  <div class="mb-3">
-                     <label class="form-label" for="review-text">نظر<span class="text-danger">*</span></label>
-                    <textarea class="form-control" rows="6" required id="review-text"></textarea>
-                    <div class="invalid-feedback"> یک بررسی بنویسید!</div><small class="form-text text-muted">نظر شما باید حداقل 50 نویسه باشد.</small>
-                  </div>
-                  <div class="mb-3">
-                     <label class="form-label" for="review-pros">مثبت</label>
-                    <textarea class="form-control" rows="2" placeholder="با ویرگول جدا شده است" id="review-pros"></textarea>
-                  </div>
-                  <div class="mb-3 mb-4">
-                   <label class="form-label" for="review-cons">منفی</label>
-                    <textarea class="form-control" rows="2" placeholder="با ویرگول جدا شده است" id="review-cons"></textarea>
-                  </div>
+                    {% csrf_token %}
+                    {{ comment_form.as_p }}
+
                   <button class="btn btn-primary btn-shadow d-block w-100" type="submit">ارسال یک بررسی</button>
                 </form>
               </div>
@@ -417,329 +287,10 @@
           </div>
         </div>
       </div>
-      <!-- Product carousel (Style with)-->
-      <div class="container pt-5">
-        <h2 class="h3 text-center pb-4">سبک با</h2>
-        <div class="tns-carousel ltr tns-controls-static tns-controls-outside">
-          <div class="tns-carousel-inner" data-carousel-options="{&quot;items&quot;: 2, &quot;controls&quot;: true, &quot;nav&quot;: false, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1},&quot;500&quot;:{&quot;items&quot;:2, &quot;gutter&quot;: 18},&quot;768&quot;:{&quot;items&quot;:3, &quot;gutter&quot;: 20}, &quot;1100&quot;:{&quot;items&quot;:4, &quot;gutter&quot;: 30}}}">
-            <!-- Product-->
-            <div>
-              <div class="card product-card card-static rtl">
-                <button class="btn-wishlist btn-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="اضافه کردن به علاقه مندی"><i class="ci-heart"></i></button><a class="card-img-top d-block overflow-hidden" href="#"><img src="img/shop/catalog/14.jpg" alt="محصول"></a>
-                <div class="card-body py-2"><a class="product-meta d-block fs-xs pb-1" href="#">کیف مردانه</a>
-                  <h3 class="product-title fs-sm"><a href="#">کیف مردانه</a></h3>
-                  <div class="d-flex justify-content-between">
-                    <div class="product-price"><span class="text-accent">58.<small>99</small></span></div>
-                    <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Product-->
-            <div>
-              <div class="card product-card card-static rtl"><span class="badge bg-danger badge-shadow">تخفیف</span>
-                <button class="btn-wishlist btn-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="اضافه کردن به علاقه مندی"><i class="ci-heart"></i></button><a class="card-img-top d-block overflow-hidden" href="#"><img src="img/shop/catalog/17.jpg" alt="محصول"></a>
-                <div class="card-body py-2"><a class="product-meta d-block fs-xs pb-1" href="#">کیف مردانه</a>
-                  <h3 class="product-title fs-sm"><a href="#">کفش کتانی</a></h3>
-                  <div class="d-flex justify-content-between">
-                    <div class="product-price"><span class="text-accent">9.<small>50</small></span>
-                      <del class="fs-sm text-muted">11.<small>50</small></del>
-                    </div>
-                    <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-half active"></i><i class="star-rating-icon ci-star"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Product-->
-            <div>
-              <div class="card product-card card-static rtl">
-                <button class="btn-wishlist btn-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="اضافه کردن به علاقه مندی"><i class="ci-heart"></i></button><a class="card-img-top d-block overflow-hidden" href="#"><img src="img/shop/catalog/18.jpg" alt="محصول"></a>
-                <div class="card-body py-2"><a class="product-meta d-block fs-xs pb-1" href="#">کیف مردانه</a>
-                  <h3 class="product-title fs-sm"><a href="#">کفش کتانی</a></h3>
-                  <div class="d-flex justify-content-between">
-                    <div class="product-price text-accent">64.<small>99</small></div>
-                    <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Product-->
-            <div>
-              <div class="card product-card card-static rtl">
-                <button class="btn-wishlist btn-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="اضافه کردن به علاقه مندی"><i class="ci-heart"></i></button><a class="card-img-top d-block overflow-hidden" href="#"><img src="img/shop/catalog/19.jpg" alt="محصول"></a>
-                <div class="card-body py-2"><a class="product-meta d-block fs-xs pb-1" href="#">کیف مردانه</a>
-                  <h3 class="product-title fs-sm"><a href="#">کفش کتانی</a></h3>
-                  <div class="d-flex justify-content-between">
-                    <div class="product-price text-accent">27.<small>99</small></div>
-                    <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-half active"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Product-->
-            <div>
-              <div class="card product-card card-static rtl">
-                <button class="btn-wishlist btn-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="اضافه کردن به علاقه مندی"><i class="ci-heart"></i></button><a class="card-img-top d-block overflow-hidden" href="#"><img src="img/shop/catalog/13.jpg" alt="محصول"></a>
-                <div class="card-body py-2"><a class="product-meta d-block fs-xs pb-1" href="#">کیف مردانه</a>
-                  <h3 class="product-title fs-sm"><a href="#">کفش کتانی</a></h3>
-                  <div class="d-flex justify-content-between">
-                    <div class="product-price text-accent">13.<small>50</small></div>
-                    <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star"></i><i class="star-rating-icon ci-star"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Product carousel (ممکن است دوست داشته باشید)-->
-      <div class="container py-5 my-md-3">
-        <h2 class="h3 text-center pb-4">ممکن است دوست داشته باشید</h2>
-        <div class="tns-carousel ltr tns-controls-static tns-controls-outside">
-          <div class="tns-carousel-inner" data-carousel-options="{&quot;items&quot;: 2, &quot;controls&quot;: true, &quot;nav&quot;: false, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1},&quot;500&quot;:{&quot;items&quot;:2, &quot;gutter&quot;: 18},&quot;768&quot;:{&quot;items&quot;:3, &quot;gutter&quot;: 20}, &quot;1100&quot;:{&quot;items&quot;:4, &quot;gutter&quot;: 30}}}">
-            <!-- Product-->
-            <div>
-              <div class="card product-card card-static rtl">
-                <button class="btn-wishlist btn-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="اضافه کردن به علاقه مندی"><i class="ci-heart"></i></button><a class="card-img-top d-block overflow-hidden" href="#"><img src="img/shop/catalog/20.jpg" alt="محصول"></a>
-                <div class="card-body py-2"><a class="product-meta d-block fs-xs pb-1" href="#">کیف مردانه</a>
-                  <h3 class="product-title fs-sm"><a href="#">کلاه دار</a></h3>
-                  <div class="d-flex justify-content-between">
-                    <div class="product-price"><span class="text-accent">24.<small>99</small></span></div>
-                    <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-half active"></i><i class="star-rating-icon ci-star"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Product-->
-            <div>
-              <div class="card product-card card-static rtl">
-                <button class="btn-wishlist btn-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="اضافه کردن به علاقه مندی"><i class="ci-heart"></i></button><a class="card-img-top d-block overflow-hidden" href="#"><img src="img/shop/catalog/21.jpg" alt="محصول"></a>
-                <div class="card-body py-2"><a class="product-meta d-block fs-xs pb-1" href="#">کیف مردانه</a>
-                  <h3 class="product-title fs-sm"><a href="#">کلاه دار</a></h3>
-                  <div class="d-flex justify-content-between">
-                    <div class="product-price text-accent">26.<small>99</small></div>
-                    <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Product-->
-            <div>
-              <div class="card product-card card-static rtl">
-                <button class="btn-wishlist btn-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="اضافه کردن به علاقه مندی"><i class="ci-heart"></i></button><a class="card-img-top d-block overflow-hidden" href="#"><img src="img/shop/catalog/22.jpg" alt="محصول"></a>
-                <div class="card-body py-2"><a class="product-meta d-block fs-xs pb-1" href="#">کیف مردانه</a>
-                  <h3 class="product-title fs-sm"><a href="#">کلاه دار</a></h3>
-                  <div class="d-flex justify-content-between">
-                    <div class="product-price text-accent">24.<small>99</small></div>
-                    <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-half active"></i><i class="star-rating-icon ci-star"></i><i class="star-rating-icon ci-star"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Product-->
-            <div>
-              <div class="card product-card card-static rtl">
-                <button class="btn-wishlist btn-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="اضافه کردن به علاقه مندی"><i class="ci-heart"></i></button><a class="card-img-top d-block overflow-hidden" href="#"><img src="img/shop/catalog/23.jpg" alt="محصول"></a>
-                <div class="card-body py-2"><a class="product-meta d-block fs-xs pb-1" href="#">کیف مردانه</a>
-                  <h3 class="product-title fs-sm"><a href="#">کلاه دار</a></h3>
-                  <div class="d-flex justify-content-between">
-                    <div class="product-price text-accent">24.<small>99</small></div>
-                    <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Product-->
-            <div>
-              <div class="card product-card card-static rtl">
-                <button class="btn-wishlist btn-sm" type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="اضافه کردن به علاقه مندی"><i class="ci-heart"></i></button><a class="card-img-top d-block overflow-hidden" href="#"><img src="img/shop/catalog/24.jpg" alt="محصول"></a>
-                <div class="card-body py-2"><a class="product-meta d-block fs-xs pb-1" href="#">کیف مردانه</a>
-                  <h3 class="product-title fs-sm"><a href="#">کلاه دار</a></h3>
-                  <div class="d-flex justify-content-between">
-                    <div class="product-price text-accent">25.<small>00</small></div>
-                    <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star"></i><i class="star-rating-icon ci-star"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </main>
-    <!-- Footer-->
-    <footer class="footer bg-dark pt-5">
-      <div class="container">
-        <div class="row pb-2">
-          <div class="col-md-4 col-sm-6">
-            <div class="widget widget-links widget-light pb-2 mb-4">
-              <h3 class="widget-title text-light">بخشهای فروشگاه</h3>
-              <ul class="widget-list">
-                <li class="widget-list-item"><a class="widget-list-link" href="#">کفش های کتانی و ورزشی</a></li>
-                <li class="widget-list-item"><a class="widget-list-link" href="#">لباس ورزشی</a></li>
-                <li class="widget-list-item"><a class="widget-list-link" href="#">لباس ورزشی</a></li>
-                 <li class="widget-list-item"><a class="widget-list-link" href="#">لباس ورزشی</a></li>
-                <li class="widget-list-item"><a class="widget-list-link" href="#">لباس ورزشی</a></li>
-                 <li class="widget-list-item"><a class="widget-list-link" href="#">لباس ورزشی</a></li>
-                 <li class="widget-list-item"><a class="widget-list-link" href="#">لباس ورزشی</a></li>
-               <li class="widget-list-item"><a class="widget-list-link" href="#">لباس ورزشی</a></li>
-                <li class="widget-list-item"><a class="widget-list-link" href="#">لباس ورزشی</a></li>
-                <li class="widget-list-item"><a class="widget-list-link" href="#">لباس ورزشی</a></li>
-                 <li class="widget-list-item"><a class="widget-list-link" href="#">لباس ورزشی</a></li>
-              <li class="widget-list-item"><a class="widget-list-link" href="#">لباس ورزشی</a></li>
-              <li class="widget-list-item"><a class="widget-list-link" href="#">لباس ورزشی</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md-4 col-sm-6">
-            <div class="widget widget-links widget-light pb-2 mb-4">
-              <h3 class="widget-title text-light">اطلاعات حساب</h3>
-              <ul class="widget-list">
-                <li class="widget-list-item"><a class="widget-list-link" href="#">حساب</a></li>
-               <li class="widget-list-item"><a class="widget-list-link" href="#">نرخ حمل و نقل </a></li>
-            <li class="widget-list-item"><a class="widget-list-link" href="#">بازپرداخت و جایگزینی</a></li>
-                <li class="widget-list-item"><a class="widget-list-link" href="#">رهیگیری سفارش</a></li>
-               <li class="widget-list-item"><a class="widget-list-link" href="#">اطلاعات تحویل</a></li>
-        <li class="widget-list-item"><a class="widget-list-link" href="#">مالیات و هزینه ها</a></li>
-              </ul>
-            </div>
-            <div class="widget widget-links widget-light pb-2 mb-4">
-              <h3 class="widget-title text-light">درباره ما</h3>
-              <ul class="widget-list">
-                <li class="widget-list-item"><a class="widget-list-link" href="#">درباره شرکت</a></li>
-               <li class="widget-list-item"><a class="widget-list-link" href="#">تیم ما</a></li>
-                <li class="widget-list-item"><a class="widget-list-link" href="#">مشاغل</a></li>
-                <li class="widget-list-item"><a class="widget-list-link" href="#">خبر ها</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="widget pb-2 mb-4">
-              <h3 class="widget-title text-light pb-1">در جریان باشید</h3>
-              <form class="subscription-form validate" action="#" method="post" name="mc-embedded-subscribe-form" target="_blank" novalidate>
-                <div class="input-group flex-nowrap"><i class="ci-mail position-absolute top-50 translate-middle-y text-muted fs-base ms-3"></i>
-                  <input class="form-control rounded-start" type="email" name="EMAIL" placeholder="ایمیل شما" required>
-                  <button class="btn btn-primary" type="submit" name="subscribe">عضویت</button>
-                </div>
-                <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-                <div style="position: absolute;right: -5000px;" aria-hidden="true">
-                  <input class="subscription-form-antispam" type="text" name="b_c7103e2c981361a6639545bd5_29ca296126" tabindex="-1">
-                </div>
-                <div class="form-text text-light opacity-50">* برای دریافت پیشنهادات تخفیف ، به روزرسانی و اطلاعات جدید محصولات ، در خبرنامه ما مشترک شوید.</div>
-                <div class="subscription-status"></div>
-              </form>
-            </div>
-            <div class="widget pb-2 mb-4">
-              <h3 class="widget-title text-light pb-1">برنامه ما را بارگیری کنید</h3>
-              <div class="d-flex flex-wrap">
-                <div class="me-2 mb-2"><a class="btn-market btn-apple" href="#" role="button"><span class="btn-market-subtitle">بارگیری در</span><span class="btn-market-title">App Store</span></a></div>
-                <div class="mb-2"><a class="btn-market btn-google" href="#" role="button"><span class="btn-market-subtitle">بارگیری در</span><span class="btn-market-title">Google Play</span></a></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="pt-5 bg-darker">
-        <div class="container">
-          <div class="row pb-3">
-            <div class="col-md-3 col-sm-6 mb-4">
-              <div class="d-flex"><i class="ci-rocket text-primary" style="font-size: 2.25rem;"></i>
-                <div class="ps-3">
-                  <h6 class="fs-base text-light mb-1">تحویل سریع و رایگان</h6>
-                  <p class="mb-0 fs-ms text-light opacity-50">ارسال رایگان برای کلیه سفارش های بالای 200 </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3 col-sm-6 mb-4">
-              <div class="d-flex"><i class="ci-currency-exchange text-primary" style="font-size: 2.25rem;"></i>
-                <div class="ps-3">
-                  <h6 class="fs-base text-light mb-1">تضمین بازگشت پول</h6>
-                  <p class="mb-0 fs-ms text-light opacity-50">ما ظرف 30 روز پول برمی گردانیم</p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3 col-sm-6 mb-4">
-              <div class="d-flex"><i class="ci-support text-primary" style="font-size: 2.25rem;"></i>
-                <div class="ps-3">
-                  <h6 class="fs-base text-light mb-1">پشتیبانی 24/7 مشتری</h6>
-                  <p class="mb-0 fs-ms text-light opacity-50">دوستانه 24/7 پشتیبانی مشتری</p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3 col-sm-6 mb-4">
-              <div class="d-flex"><i class="ci-card text-primary" style="font-size: 2.25rem;"></i>
-                <div class="ps-3">
-                  <h6 class="fs-base text-light mb-1">پرداخت آنلاین ایمن</h6>
-                  <p class="mb-0 fs-ms text-light opacity-50">ما دارای گواهی هستیم</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <hr class="hr-light mb-5">
-          <div class="row pb-2">
-            <div class="col-md-6 text-center text-md-start mb-4">
-              <div class="text-nowrap mb-4"><a class="d-inline-block align-middle mt-n1 me-3" href="#"><img class="d-block" src="img/footer-logo-light.png" width="117" alt="کارتزیلا"></a>
-                <div class="btn-group dropdown disable-autohide">
-                  <button class="btn btn-outline-light border-light btn-sm dropdown-toggle px-2" type="button" data-bs-toggle="dropdown"><img class="me-2" src="img/flags/en.png" width="20" alt="English">انگلیس</button>
-                  <ul class="dropdown-menu my-1">
-                    <li class="dropdown-item">
-                      <select class="form-select form-select-sm">
-                        <option value="usd">دلار</option>
-                        <option value="eur">تومان</option>
-                         <option value="ukp">یورو</option>
-                             <option value="jpy">پوند</option>
-                      </select>
-                    </li>
-                    <li><a class="dropdown-item pb-1" href="#"><img class="me-2" src="img/flags/fr.png" width="20" alt="فرانسه">فرانسه</a></li>
-                     <li><a class="dropdown-item pb-1" href="#"><img class="me-2" src="img/flags/de.png" width="20" alt="آلمان">آلمان</a></li>
-                    <li><a class="dropdown-item" href="#"><img class="me-2" src="img/flags/it.png" width="20" alt="ایتالیا">ایتالیا</a></li>
-                  </ul>
-                </div>
-              </div>
-              <div class="widget widget-links widget-light">
-                <ul class="widget-list d-flex flex-wrap justify-content-center justify-content-md-start">
-                  <li class="widget-list-item me-4"><a class="widget-list-link" href="#">خروجی ها</a></li>
-                  <li class="widget-list-item me-4"><a class="widget-list-link" href="#">شرکت های وابسته</a></li>
-                  <li class="widget-list-item me-4"><a class="widget-list-link" href="#">پشتیبانی</a></li>
-                  <li class="widget-list-item me-4"><a class="widget-list-link" href="#">شرایط</a></li>
-                  <li class="widget-list-item me-4"><a class="widget-list-link" href="#">شرایط استفاده</a></li>
-                </ul>
-              </div>
-            </div>
-            <div class="col-md-6 text-center text-md-end mb-4">
-              <div class="mb-3"><a class="btn-social bs-light bs-twitter ms-2 mb-2" href="#"><i class="ci-twitter"></i></a><a class="btn-social bs-light bs-facebook ms-2 mb-2" href="#"><i class="ci-facebook"></i></a><a class="btn-social bs-light bs-instagram ms-2 mb-2" href="#"><i class="ci-instagram"></i></a><a class="btn-social bs-light bs-pinterest ms-2 mb-2" href="#"><i class="ci-pinterest"></i></a><a class="btn-social bs-light bs-youtube ms-2 mb-2" href="#"><i class="ci-youtube"></i></a></div><img class="d-inline-block" src="img/cards-alt.png" width="187" alt="روش پرداخت">
-            </div>
-          </div>
-          <div class="pb-4 fs-xs text-light opacity-50 text-center text-md-start">© کلیه حقوق محفوظ است  <a class="text-light" href="#" target="_blank" rel="noopener">گروه ستین</a></div>
-        </div>
-      </div>
-    </footer>
-    <!-- Toolbar for handheld devices (Default)-->
-    <div class="handheld-toolbar">
-      <div class="d-table table-layout-fixed w-100"><a class="d-table-cell handheld-toolbar-item" href="account-wishlist.html"><span class="handheld-toolbar-icon"><i class="ci-heart"></i></span><span class="handheld-toolbar-label">علاقه مندی</span></a><a class="d-table-cell handheld-toolbar-item" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" onclick="window.scrollTo(0, 0)"><span class="handheld-toolbar-icon"><i class="ci-menu"></i></span><span class="handheld-toolbar-label">منو</span></a><a class="d-table-cell handheld-toolbar-item" href="shop-cart.html"><span class="handheld-toolbar-icon"><i class="ci-cart"></i><span class="badge bg-primary rounded-pill ms-1">4</span></span><span class="handheld-toolbar-label">265.00</span></a></div>
-    </div>
-    <!-- Back To Top Button--><a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">بالا</span><i class="btn-scroll-top-icon ci-arrow-up">   </i></a>
-    <!-- Vendor scrits: js libraries and plugins-->
-    <script src="vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="vendor/simplebar/dist/simplebar.min.js"></script>
-    <script src="vendor/tiny-slider/dist/min/tiny-slider.js"></script>
-    <script src="vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
-    <script src="vendor/drift-zoom/dist/Drift.min.js"></script>
-    <script src="vendor/lightgallery.js/dist/js/lightgallery.min.js"></script>
-    <script src="vendor/lg-video.js/dist/lg-video.min.js"></script>
-    <!-- Main theme script-->
-    <script src="js/theme.min.js"></script>
-  </body>
 
-</html>
 
+
+
+        </div>
+      </div>
 {% endblock page_content %}

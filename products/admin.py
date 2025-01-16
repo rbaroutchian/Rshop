@@ -15,11 +15,17 @@ class ProductAdmin(admin.ModelAdmin):
     list_filter = ['Pcategory', 'ProductBrand', 'Pprice']
     list_editable = ['is_active', 'Pprice']
 
+class ProductCommentadmin(admin.ModelAdmin):
+    list_display = ['user', 'create_date', 'parent']
+
+
 
 admin.site.register(models.Product, ProductAdmin)
 admin.site.register(models.ProductCategory,ProductCategory)
 admin.site.register(models.ProductTag)
 admin.site.register(models.ProductBrand)
+admin.site.register(models.ProductComment, ProductCommentadmin)
+
 
 
 

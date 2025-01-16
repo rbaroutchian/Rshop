@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load render_partial %}
 {#{% load poll_extras %}#}
 {% load thumbnail %}
 {% block page_title %}
@@ -24,58 +25,40 @@
             </div>
             <!-- Gallery-->
             <div class="gallery row pb-2">
-              <div class="col-sm-8"><a class="gallery-item rounded-3 mb-grid-gutter" href="{{ post.sb_sb_image.url }}" >
-                  <img src="{{ posts.sb_image.url }}" alt="{{ posts.sb_title }}"><span class="gallery-item-caption">زیرنویس تصویر گالری #1</span></a></div>
-              <div class="col-sm-4"><a class="gallery-item rounded-3 mb-grid-gutter" href="{{ post.sb_image.url }}" >
-                  <img src="{{ posts.sb_image.url }}" alt="{{ post.sb_title }}"><span class="gallery-item-caption">زیرنویس تصویر گالری #2</span></a><a class="gallery-item rounded-3 mb-grid-gutter" href="{{ post.sb_image.url }}" >
-                  <img src="{{ posts.sb_image.url }}" alt="{{ post.sb_title }}"><span class="gallery-item-caption">زیرنویس تصویر گالری #3</span></a></div>
+              <div class="col-sm-8"><a class="gallery-item rounded-3 mb-grid-gutter" href="{{ article.image.url }}" >
+                  <img src="{{ article.image.url }}" alt="{{ article.title }}"><span class="gallery-item-caption">زیرنویس تصویر گالری #1</span></a></div>
+              <div class="col-sm-4"><a class="gallery-item rounded-3 mb-grid-gutter" href="{{ article.image.url }}" >
+                  <img src="{{ article.image.url }}" alt="{{ article.title }}"><span class="gallery-item-caption">زیرنویس تصویر گالری #2</span></a><a class="gallery-item rounded-3 mb-grid-gutter" href="{{ article.image.url }}" >
+                  <img src="{{ article.image.url }}" alt="{{ article.title }}"><span class="gallery-item-caption">زیرنویس تصویر گالری #3</span></a></div>
             </div>
             <!-- Post content-->
-              <a>{{ posts.sb_title }}</a>
-              <p> {{ posts.sb_description }}</p>
-            
+              <a>{{ article.title }}</a>
+              <p> {{ article.short_description }}</p>
 
+<!-- Comments-->
+{#            <div class="pt-2 mt-5" id="comments">#}
+              <h2 class="h4">نظرات<span class="badge bg-secondary fs-sm text-body align-middle ms-2">{{ comments_count }}</span></h2>
 
-            <!-- Comments-->
-            <div class="pt-2 mt-5" id="comments">
-              <h2 class="h4">نظرات<span class="badge bg-secondary fs-sm text-body align-middle ms-2">3</span></h2>
-              <!-- comment-->
-              <div class="d-flex align-items-start py-4 border-bottom"><img class="rounded-circle" src="{% static 'images/meta/02.jpg' %}" width="50" alt="مایکل دیویس">
-                <div class="ps-3">
-                  <div class="d-flex justify-content-between align-items-center mb-2">
-                    <h6 class="fs-md mb-0">مایکل دیویس</h6><a class="nav-link-style fs-sm fw-medium" href="#"><i class="ci-reply me-2"></i>پاسخ</a>
-                  </div>
-                  <p class="fs-md mb-1">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز</p><span class="fs-ms text-muted"><i class="ci-time align-middle me-2"></i>25 تیر 1400</span>
-                  <!-- comment reply-->
-                  <div class="d-flex align-items-start border-top pt-4 mt-4"><img class="rounded-circle" src="{% static 'images/meta/03.jpg' %}" width="50" alt="مایکل دیویس">
-                    <div class="ps-3">
-                      <div class="d-flex justify-content-between align-items-center mb-2">
-                        <h6 class="fs-md mb-0">مایکل دیویس</h6>
-                      </div>
-                      <p class="fs-md mb-1">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز</p><span class="fs-ms text-muted"><i class="ci-time align-middle me-2"></i>25 تیر 1400</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- comment-->
-              <div class="d-flex align-items-start py-4"><img class="rounded-circle" src="{% static 'images/meta/05.jpg' %}" width="50" alt="جاناتان دوو">
-                <div class="ps-3">
-                  <div class="d-flex justify-content-between align-items-center mb-2">
-                    <h6 class="fs-md mb-0">جاناتان دوو</h6><a class="nav-link-style fs-sm fw-medium" href="#"><i class="ci-reply me-2"></i>پاسخ</a>
-                  </div>
-                  <p class="fs-md mb-1">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز</p><span class="fs-ms text-muted"><i class="ci-time align-middle me-2"></i>25 تیر 1400</span>
-                </div>
-              </div>
+             {% include 'includes/article_comment_partial.html' %}
+
               <!-- ارسال نظر form-->
               <div class="card border-0 shadow mt-2 mb-4">
                 <div class="card-body">
-                  <div class="d-flex align-items-start"><img class="rounded-circle" src="{% static 'images/meta/03.jpg' %}" width="50" alt="مایکل دیویس">
-                    <form class="w-100 needs-validation ms-3" novalidate>
-                      <div class="mb-3">
-                        <textarea class="form-control" rows="4" placeholder="نظر بنویسید ..." required></textarea>
-                        <div class="invalid-feedback">نظر بنویسید ...</div>
-                      </div>
+                    <form class="w-100 needs-validation ms-3" method="post"  novalidate>
+                    {% csrf_token %}
+                    {{ comment_form.as_p }}
+{#                        {% if request.user.is_authenticated %}#}
+
+{#                      <div class="mb-3">#}
+{##}
+{#                      </div>#}
                       <button class="btn btn-primary btn-sm" type="submit">ارسال نظر</button>
+{#                        {% else %}#}
+{#                            <div class="alert alert-warning">#}
+{#                                برای درج نظر حتما باید <a href="{% url 'login_page' %}">وارد</a> سایت شوید#}
+{#                            </div>#}
+{#                        {% endif %}#}
+
                     </form>
                   </div>
                 </div>
@@ -83,36 +66,5 @@
             </div>
           </div>
         </div>
-      </div>
-<!-- Related posts-->
-<div class="bg-secondary py-5">
-        <div class="container py-3">
-          <h2 class="h4 text-center pb-4">ممکن است دوست داشته باشید</h2>
-          <div class="tns-carousel ltr">
-            <div class="tns-carousel-inner" data-carousel-options="{&quot;items&quot;: 2, &quot;controls&quot;: false, &quot;autoHeight&quot;: true, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1},&quot;500&quot;:{&quot;items&quot;:2, &quot;gutter&quot;: 20},&quot;900&quot;:{&quot;items&quot;:3, &quot;gutter&quot;: 20}, &quot;1100&quot;:{&quot;items&quot;:3, &quot;gutter&quot;: 30}}}">
-              <!-- article-->
-              <article class="rtl" ><a class="blog-entry-thumb mb-3" href="#"><img src="img/blog/03.jpg" alt="Post"></a>
-                <div class="d-flex align-items-center fs-sm mb-2"><a class="blog-entry-meta-link" href="#"> رافائل مارکز</a><span class="blog-entry-meta-divider"></span><a class="blog-entry-meta-link" href="#">25 مهر</a></div>
-                <h3 class="h6 blog-entry-title"><a href="#">سفر جهانی و تعطیلات با بودجه ای تنگ</a></h3>
-              </article>
-              <!-- article-->
-              <article class="rtl" ><a class="blog-entry-thumb mb-3" href="#"><img src="img/blog/04.jpg" alt="Post"></a>
-                <div class="d-flex align-items-center fs-sm mb-2"><a class="blog-entry-meta-link" href="#"> رافائل مارکز</a><span class="blog-entry-meta-divider"></span><a class="blog-entry-meta-link" href="#">25 مهر</a></div>
-                <h3 class="h6 blog-entry-title"><a href="#">سفر جهانی و تعطیلات با بودجه ای تنگ</a></h3>
-              </article>
-              <!-- article-->
-              <article class="rtl" ><a class="blog-entry-thumb mb-3" href="#"><img src="img/blog/02.jpg" alt="Post"></a>
-                <div class="d-flex align-items-center fs-sm mb-2"><a class="blog-entry-meta-link" href="#"> رافائل مارکز</a><span class="blog-entry-meta-divider"></span><a class="blog-entry-meta-link" href="#">25 مهر</a></div>
-                <h3 class="h6 blog-entry-title"><a href="#">سفر جهانی و تعطیلات با بودجه ای تنگ</a></h3>
-              </article>
-              <!-- article-->
-              <article class="rtl" ><a class="blog-entry-thumb mb-3" href="#"><img src="img/blog/01.jpg" alt="Post"></a>
-                <div class="d-flex align-items-center fs-sm mb-2"><a class="blog-entry-meta-link" href="#"> رافائل مارکز</a><span class="blog-entry-meta-divider"></span><a class="blog-entry-meta-link" href="#">25 مهر</a></div>
-                <h3 class="h6 blog-entry-title"><a href="#">سفر جهانی و تعطیلات با بودجه ای تنگ</a></h3>
-              </article>
-            </div>
-          </div>
-        </div>
-      </div>
 
 {% endblock page_content %}

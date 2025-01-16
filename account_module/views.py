@@ -5,6 +5,7 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView
 from django.views.generic.base import View
 from utils.email_service import send_email
+from utils.sms import send_sms
 
 from .models import User
 from django.utils.crypto import get_random_string
@@ -28,32 +29,74 @@ class Register(View):
     def post(self, request):
         register_form = RegisterModelForm(request.POST)
         if register_form.is_valid():
+            user_name = register_form.cleaned_data.get('username')
             user_email = register_form.cleaned_data.get('email')
             user_password = register_form.cleaned_data.get('password')
-            # user : User = User.objects.filter(email__iexact=user_email).exists()
-            user_exists = User.objects.filter(email__iexact=user_email).exists()
-            if user_exists:
-                register_form.add_error('email', 'ایمیل وارد  شده تکراری می باشد')
+            mobile = register_form.cleaned_data.get('mobile')
+
+            user_exist = User.objects.filter(mobile=mobile).exists()
+            if user_exist:
+                register_form.add_error('mobile', 'شماره تلفن قبلاً ثبت شده است.')
+
             else:
+                verification_code = get_random_string(length=6, allowed_chars='0123456789')
                 new_user = User(
+                    username=user_name,
                     email=user_email,
-                    email_active_code=get_random_string(72),
-                    is_active=False,
-                    username=user_email
+                    mobile=mobile,
+                    verification_code=verification_code,
+                    is_active=False
                 )
+
+
+
+                # user_exists = User.objects.filter(email__iexact=user_email).exists()
+            # if user_exists:
+            #     register_form.add_error('email', 'ایمیل وارد  شده تکراری می باشد')
+            # else:
+            #     new_user = User(
+            #         email=user_email,
+            #         email_active_code=get_random_string(72),
+            #         is_active=False,
+            #         username=user_email
+            #     )
 
                 new_user.set_password(user_password)
                 new_user.save()
-                send_email('فعالسازی حساب کاربری', new_user.email,
-                           {'user': new_user},
-                           'emails/active_account.html')
-                return redirect(reverse('login_page'))
+                send_sms(mobile, verification_code)
 
+                # send_email('فعالسازی حساب کاربری', new_user.email,
+                #            {'user': new_user},
+                #            'emails/active_account.html')
+                request.session['mobile'] = mobile
+                return redirect(reverse('verify_code_page'))
 
         context = {
             'register_form': register_form
         }
-        return render(request, 'account_module/login_page.html', context)
+        return render(request, 'account_module/register_page.html', context)
+
+
+class VerifyCodeView(View):
+    def get(self, request):
+        return render(request, 'account_module/verify_code.html')
+
+    def post(self, request):
+        mobile = request.session.get('mobile')
+        code = request.POST.get('verification_code')
+
+        try:
+            user = User.objects.get(mobile=mobile, verification_code=code)
+            user.is_active = True
+            user.verification_code = ''
+            user.save()
+            login(request, user)
+
+            return redirect('edit_profile_page')
+        except User.DoesNotExist:
+            error = 'کد وارد شده اشتباه است.'
+            return render(request, 'account_module/verify_code.html', {'error': error})
+
 
 class LoginView(View):
     def get(self, request):
