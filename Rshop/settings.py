@@ -76,7 +76,8 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'site_moduel.context_processors.site_settings',
-                'blog.context_processors.article_header_title'
+                'blog.context_processors.article_header_title',
+                'user_panel_module.order_context.basket_context'
             ],
         },
     },
@@ -183,3 +184,7 @@ JALALI_DATE_DEFAULTS = {
     },
 }
 
+# SANDBOX MODE
+
+MERCHANT = "cad07f7b-239d-48db-b41b-bb02843a1d92"
+SANDBOX = True

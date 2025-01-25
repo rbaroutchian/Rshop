@@ -20,22 +20,12 @@ function addProductToOrder(productID) {
         ;
 
 
-// if (res.status === 'success') {
-//             Swal.fire({
-//                 title: "اعلان",
-//                 text: "محصول مورد نظر با موفقیت ثبت شد",
-//                 icon: "success",
-//                 showCancelButton: false,
-//                 confirmButtonColor: "#3085d6",
-//                 confirmButtonText: "باشه ممنون"
-//             });
-//         }
 
     });
 }
 
 function removeOrderDetail(detailId) {
-    $.get('/dashboard/remove-order-detail?detail_id=' + detailId).then(res => {
+    $.get('/dashboard/remove_order_detail?detail_id=' + detailId).then(res => {
         if (res.status === 'success') {
             $('#order-detail-content').html(res.body);
         }

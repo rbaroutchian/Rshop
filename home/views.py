@@ -1,10 +1,13 @@
+from django.http import HttpRequest, JsonResponse
 from django.shortcuts import render, get_object_or_404
 from django.shortcuts import render
 from django.views import View
 from django.views.generic.base import TemplateView
 from products.models import Product, ProductCategory
 from site_moduel.models import Slider, SiteSetting, FooterLinkBox, FooterLink
-
+from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from order_module.models import Order, OrderDetail
 
 # def index(request):
 #     return render(request, 'home/home_page.html')
@@ -63,3 +66,5 @@ def site_header_home_component(request):
 
 def site_footer_home_component(request):
     return render(request, 'footer_home_component.html', {})
+
+
