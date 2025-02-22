@@ -70,3 +70,34 @@ class EditProfileModelForm(forms.ModelForm):
             'address6': 'آدرس ششم',
             'about_user': 'درباره شخص',
         }
+
+
+class ChangePasswordForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput(attrs={
+
+        'class': 'form-control',
+        'placeholder': 'رمز عبور جدید',
+        'autocomplete': 'new-password',
+        'style': 'border: 1px solid #6a11cb; padding: 10px; font-size: 14px;'
+
+    }), label="رمز عبور جدید")
+    confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={
+        'class': 'form-control',
+        'placeholder': 'تأیید رمز عبور',
+        'autocomplete': 'new-password',
+        'style': 'border: 1px solid #2575fc; padding: 10px; font-size: 14px;'
+
+    }), label="تأیید رمز عبور جدید")
+
+    class Meta:
+        model = User
+        fields = ('password', 'confirm_password')
+
+
+    def clean(self):
+        cleaned_data = super().clean()
+        password = cleaned_data.get("password")
+        confirm_password = cleaned_data.get("confirm_password")
+
+        if password != confirm_password:
+            raise forms.ValidationError("رمز عبور و تأیید آن مطابقت ندارند.")

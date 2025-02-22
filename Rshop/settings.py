@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     'jalali_date',
     'polls',
     'user_panel_module',
-    'order_module'
+    'order_module',
+    'admin_panel'
 
 ]
 
@@ -186,5 +187,5 @@ JALALI_DATE_DEFAULTS = {
 
 # SANDBOX MODE
 
-MERCHANT = "cad07f7b-239d-48db-b41b-bb02843a1d92"
+MERCHANT = "fcf8de24-c12a-431c-a806-4841ed85d567"
 SANDBOX = True

@@ -21,6 +21,7 @@ class User(AbstractUser):
         verbose_name='کاربر'
         verbose_name_plural='کاربران'
 
+
     def __str__(self):
         return self.get_full_name()
 

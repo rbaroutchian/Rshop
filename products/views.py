@@ -1,11 +1,12 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.http import HttpRequest, HttpResponse
+from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
+from django.template.loader import render_to_string
 from django.views.generic.base import TemplateView
 
 from products.forms import ProductCommentForm
-from products.models import Product, ProductCategory, ProductComment
+from products.models import Product, ProductCategory, ProductComment, ProductBrand
 from django.views.generic import ListView, DetailView
 
 
@@ -13,18 +14,55 @@ class productListView(ListView):
     template_name = 'product_moduels/product_list.html'
     model = Product
     context_object_name = 'products'
+    ordering = ['-Pprice']
     paginate_by = 5
 
-    def get_context_data(self, *args, **kwargs):
+    def get_context_data(self, *args, object_list=None, **kwargs):
         context = super(productListView, self).get_context_data(*args, **kwargs)
+        query = Product.objects.all()
+        product : Product = query.order_by('-Pprice').first()
+        db_max_price = product.Pprice if product is not None else 0
+        context['db_max_price']= int(db_max_price) if db_max_price else 0
+        context['start_price']= int(self.request.GET.get('start_price') or 0)
+        context['end_price']=int(self.request.GET.get('end_price') or db_max_price)
+        context['selected_brands'] = self.request.GET.getlist('brands')
         return context
 
     def get_queryset(self):
-        base_query = super(productListView, self).get_queryset()
+        query = super(productListView, self).get_queryset()
+        # base_query = super(productListView, self).get_queryset()
         category_name = self.kwargs.get('category')
+        # brand_name = self.kwargs.get('brand')
+        request : HttpRequest = self.request
+        start_price = request.GET.get('start_price')
+        end_price = request.GET.get('end_price')
+        if start_price is not None:
+
+            query = query.filter(Pprice__gte=start_price)
+        if end_price is not None:
+
+            query = query.filter(Pprice__lte=end_price)
+        data = query.filter(is_active=True)
+        query =data
+
+
         if category_name is not None:
-            base_query = base_query.filter(selected_categories__url_title__iexact=category_name)
-        return base_query
+            query = query.filter(selected_categories__url_title__iexact=category_name)
+
+        selected_brands = self.request.GET.getlist('brands')
+        if selected_brands:
+            query = query.filter(ProductBrand__title__in=selected_brands)
+
+        return query
+
+    def render_to_response(self, context, **response_kwargs):
+        if self.request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            # return render(self.request, 'product_moduels/product_list.html', context)
+            products_html = render_to_string('product_moduels/includes/product_list_filter.html', {'products': context['products']})
+            return JsonResponse({'html': products_html})
+
+        return super().render_to_response(context, **response_kwargs)
+
 
 
 def product_categories_component(request: HttpRequest):
@@ -35,6 +73,20 @@ def product_categories_component(request: HttpRequest):
     }
     return render(request, 'product_moduels/components/product_categories_component.html',
                   context)
+
+
+def product_brands_component(request: HttpRequest):
+    product_main_brands = ProductBrand.objects.filter(is_active=True)
+    selected_brands = request.GET.getlist('brands')
+
+    context = {
+        'main_brands': product_main_brands,
+        'selected_brands': selected_brands
+
+    }
+    return render(request, 'product_moduels/components/product_brands_component.html',
+                  context)
+
 
 
 # class productListView(TemplateView):
@@ -100,7 +152,13 @@ def add_product_comment(request: HttpRequest):
     return HttpResponse('response')
 
 
-
+def filter_products(request):
+    selected_brands = request.GET.getlist('brands')  # دریافت لیست برندها از درخواست
+    if selected_brands:
+        filter_products = Product.objects.filter(brand__title__in=selected_brands)
+    else:
+        filter_products = Product.objects.all()
+    return render(request, 'product_moduels/product_list.html', {'filter_products': filter_products})
 
 
 
@@ -167,3 +225,5 @@ def site_header_component(request):
 
 def site_footer_component(request):
     return render(request, 'footer_component.html', {})
+
+

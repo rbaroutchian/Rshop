@@ -50,7 +50,7 @@ class RegisterModelForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput(attrs={
 
         'class': 'form-control',
-        'placeholder': 'رمز عبور',
+        'placeholder': 'رمز عبور ',
         'autocomplete': 'new-password',
         'style': 'border: 1px solid #6a11cb; padding: 10px; font-size: 14px;'
 

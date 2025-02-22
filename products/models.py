@@ -67,7 +67,7 @@ class Product(models.Model):
     product_tag = models.ManyToManyField(ProductTag, verbose_name='تگ های محصول')
     #protect برای محافظت کردن می باشد
     #casade برای این است که اگر اون دسته بندی پاک شد همه محصولات آن پاک می شود
-    ProductBrand = models.ForeignKey(ProductBrand, on_delete=models.CASCADE, null=True, verbose_name='برند محصول')
+    ProductBrand = models.ForeignKey(ProductBrand, on_delete=models.CASCADE, null=True, verbose_name='برند محصول', related_name='productbrand')
     Pprice = models.IntegerField(default=0, db_index=True, verbose_name='قیمت')
     short_description = models.CharField(max_length=360, null=True, db_index=True, verbose_name='توضیحات کوتاه')
     description = models.TextField(verbose_name='توضیحات محصول', null=True)

@@ -1,0 +1,118 @@
+{#{% extends 'base.html' %}#}
+{#{% load render_partial %}#}
+{#{% load poll_extras %}#}
+{#{% block page_title %}#}
+{#    لیست خرید های من#}
+{#{% endblock page_title %}#}
+{#{% block page_content %}#}
+{#<div class="container">#}
+{#    <div class="row">#}
+{#        <div class="col-md-4">#}
+{#            {% render_partial 'user_panel_module.views.user_panel_menu_component' %}#}
+{#        </div>#}
+{#        <div class="col-md-8">#}
+{#            <table>#}
+{#                <tr>#}
+{#                    <th class="text-right">شناسه</th>#}
+{#                    <th class="text-right">تاریخ تایید فاکتور</th>#}
+{#                    <th class="text-right">قیمت نهایی خرید</th>#}
+{#                    <th class="text-right">دستورات</th>#}
+{#                </tr>#}
+{#                {% for order in object_list %}#}
+{#                  <tr>#}
+{#                    <th class="text-right">{{ order.id }}</th>#}
+{#                    <th class="text-right">{{ order.payment_date|show_jalali_date}}</th>#}
+{#                    <th class="text-right">{{ order.calculate_total_price}}</th>#}
+{#                    <th class="text-right"><a href="{% url 'user_shopping_detail_page' order_id=order.id %}" class="btn btn-success"></a>جزئیات</th>#}
+{#                </tr>#}
+{##}
+{#                {% endfor %}#}
+{#            </table>#}
+{##}
+{#        </div>#}
+{#    </div>#}
+{##}
+{##}
+{#</div>#}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{#{% endblock page_content %}#}
+
+
+
+{% extends 'home.html' %}
+{% load poll_extras %}
+{% load render_partial %}
+{% block page_title %}
+لیست خرید های من
+{% endblock page_title %}
+
+{% block page_content %}
+	    <!-- Page Title-->
+      <div class="page-title-overlap bg-dark pt-4">
+        <div class="container d-lg-flex justify-content-between py-2 py-lg-3">
+          <div class="order-lg-2 mb-3 mb-lg-0 pt-lg-2">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb breadcrumb-light flex-lg-nowrap justify-content-center justify-content-lg-start">
+                <li class="breadcrumb-item"><a class="text-nowrap" href="{% url 'home' %}"><i class="ci-home"></i>خانه</a></li>
+                <li class="breadcrumb-item text-nowrap"><a href="{% url 'edit_profile_page' %}">حساب کاربری</a>
+                </li>
+                <li class="breadcrumb-item text-nowrap active" aria-current="page">پروفایل</li>
+              </ol>
+            </nav>
+          </div>
+          <div class="order-lg-1 pe-lg-4 text-center text-lg-start">
+            <h1 class="h3 text-light mb-0">  پروفایل شخصی {{ current_user.first_name }} {{ current_user.last_name }}</h1>
+          </div>
+        </div>
+      </div>
+      <div class="container pb-5 mb-2 mb-md-4">
+        <div class="row">
+
+            {% render_partial 'user_panel_module.views.user_panel_menu_component' %}
+             <!-- Content  -->
+          <section class="col-lg-8">
+            <!-- Toolbar-->
+            <div class="d-none d-lg-flex justify-content-between align-items-center pt-lg-3 pb-4 pb-lg-5 mb-lg-3">
+              <h6 class="fs-base text-light mb-0">مشاهده خرید</h6><a class="btn btn-primary btn-sm" href="account-signin.html"><i class="ci-sign-out me-2"></i>خروج</a>
+            </div>
+            <!-- Profile form-->
+              <!-- Orders list-->
+            <div class="table-responsive fs-md mb-4">
+              <table class="table table-hover mb-0">
+                <thead>
+                  <tr>
+                    <th>شناسه</th>
+                  <th>تاریخ تایید فاکتور</th>
+                      <th>قیمت نهایی خرید</th>
+                  <th>دستورات</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% for order in object_list %}
+                  <tr>
+                    <td class="py-3"><a class="nav-link-style fw-medium fs-sm" href="#order-details" data-bs-toggle="modal">{{ order.id }}</a></td>
+                    <td class="py-3">{{ order.payment_date|show_jalali_date}}</td>
+                    <td class="py-3"><span class="badge bg-info m-0">{{ order.calculate_total_price}}</span></td>
+                    <td class="py-3"><a href="{% url 'user_shopping_detail_page' order_id=order.id %}" class="btn btn-success">جزئیات</a></td>
+                  </tr>
+                {% endfor %}
+
+                </tbody>
+              </table>
+            </div>
+
+          </section>
+        </div>
+      </div>
+{% endblock page_content %}

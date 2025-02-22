@@ -1,0 +1,122 @@
+{#{% extends 'base.html' %}#}
+{#{% load render_partial %}#}
+{#{% load poll_extras %}#}
+{#{% block page_title %}#}
+{##}
+{#    صفحه خرید#}
+{#{% endblock page_title %}#}
+{#{% block page_content %}#}
+{#<div class="container">#}
+{#    <div class="col-md-4">#}
+{#    {% render_partial 'user_panel_module.views.user_panel_menu_component' %}#}
+{#    </div>#}
+{#    <div class="col-md-8">#}
+{#        <table class="table table-responsive table-hover table-striped">#}
+{#            <tr>#}
+{#                <th class="text-right">شناسه</th>#}
+{#                <th class="text-right">محصول</th>#}
+{#                <th class="text-right">تعداد</th>#}
+{#                <th class="text-right">قیمت نهایی واحد</th>#}
+{#            </tr>#}
+{#            {% for detail in order.orderdetails_set.all %}#}
+{#                <th class="text-right">{{ detail.id }}</th>#}
+{#                <th class="text-right">{{ detail.product.Ptitle }}</th>#}
+{#                <th class="text-right">{{ detail.count }}</th>#}
+{#                <th class="text-right">{{ detail.final_price |three_digits_currency}}</th>#}
+{#            {% endfor %}#}
+{#        </table>#}
+{#    </div>#}
+{##}
+{##}
+{#</div>#}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+{#{% endblock page_content %}#}
+
+
+
+{% extends 'home.html' %}
+{% load poll_extras %}
+{% load render_partial %}
+{% block page_title %}
+لیست خرید های من
+{% endblock page_title %}
+
+{% block page_content %}
+	    <!-- Page Title-->
+      <div class="page-title-overlap bg-dark pt-4">
+        <div class="container d-lg-flex justify-content-between py-2 py-lg-3">
+          <div class="order-lg-2 mb-3 mb-lg-0 pt-lg-2">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb breadcrumb-light flex-lg-nowrap justify-content-center justify-content-lg-start">
+                <li class="breadcrumb-item"><a class="text-nowrap" href="{% url 'home' %}"><i class="ci-home"></i>خانه</a></li>
+                <li class="breadcrumb-item text-nowrap"><a href="{% url 'edit_profile_page' %}">حساب کاربری</a>
+                </li>
+                <li class="breadcrumb-item text-nowrap active" aria-current="page">پروفایل</li>
+              </ol>
+            </nav>
+          </div>
+          <div class="order-lg-1 pe-lg-4 text-center text-lg-start">
+            <h1 class="h3 text-light mb-0">  پروفایل شخصی {{ current_user.first_name }} {{ current_user.last_name }}</h1>
+          </div>
+        </div>
+      </div>
+      <div class="container pb-5 mb-2 mb-md-4">
+        <div class="row">
+
+            {% render_partial 'user_panel_module.views.user_panel_menu_component' %}
+             <!-- Content  -->
+          <section class="col-lg-8">
+            <!-- Toolbar-->
+            <div class="d-none d-lg-flex justify-content-between align-items-center pt-lg-3 pb-4 pb-lg-5 mb-lg-3">
+              <h6 class="fs-base text-light mb-0">مشاهده خرید من</h6><a class="btn btn-primary btn-sm" href="account-signin.html"><i class="ci-sign-out me-2"></i>خروج</a>
+            </div>
+            <!-- Profile form-->
+              <!-- Orders list-->
+            <div class="table-responsive fs-md mb-4">
+{#            <a onclick="alert({{ order.id }})" class="btn-success" >print</a>#}
+              <table class="table table-responsive table-hover table-striped">
+                <thead>
+                  <tr>
+                    <th>شناسه</th>
+                  <th>محصول</th>
+                      <th>تعداد</th>
+                  <th>قیمت نهایی واحد</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% if order.orderdetails_set.exists %}
+
+                {% for detail in order.orderdetails_set.all %}
+
+                  <tr>
+                    <td class="py-3">{{ detail.id }}</td>
+                    <td class="py-3">{{ detail.product.Ptitle }}</td>
+                    <td class="py-3"><span class="badge bg-info m-0">{{ detail.count }}</span></td>
+                    <td class="py-3">{{ detail.final_price |three_digits_currency}}</td>
+                  </tr>
+                {% endfor %}
+                    {% else %}
+                    <tr>
+        <td colspan="4" class="text-center">هیچ جزئیاتی برای این سفارش وجود ندارد.</td>
+    </tr>
+                {% endif %}
+
+                </tbody>
+              </table>
+            </div>
+
+          </section>
+        </div>
+      </div>
+{% endblock page_content %}

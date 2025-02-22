@@ -36,31 +36,41 @@
               <p> {{ article.short_description }}</p>
 
 <!-- Comments-->
-{#            <div class="pt-2 mt-5" id="comments">#}
+            <div class="pt-2 mt-5">
               <h2 class="h4">نظرات شما<span class="badge bg-secondary fs-sm text-body align-middle ms-2">{{ comments_count }}</span></h2>
 
-             {% include 'includes/article_comment_partial.html' %}
+              <div id="comment_list">
+                    {% include 'includes/article_comment_partial.html' %}
+                 </div>
 
               <!-- ارسال نظر form-->
               <div class="card border-0 shadow mt-2 mb-4">
+                  {% if request.user.is_authenticated %}
                 <div class="card-body">
-                    <form class="w-100 needs-validation ms-3" method="post"  novalidate>
-                    {% csrf_token %}
-                    {{ comment_form.as_p }}
+                    <form class="w-100 needs-validation ms-3" method="post" novalidate>
+                        {% csrf_token %}
+                        <div class="mb-3">
+                        <textarea class="form-control" id="commentText" rows="4" placeholder="نظر بنویسید ..." required></textarea>
+                        <input type="hidden" id="parentId" value="">
+                            <div class="invalid-feedback">نظر بنویسید ...</div>
+                      </div>
+{#                    {% csrf_token %}#}
+{#                    {{ comment_form.as_p }}#}
 {#                        {% if request.user.is_authenticated %}#}
 
 {#                      <div class="mb-3">#}
 {##}
 {#                      </div>#}
-                      <button class="btn btn-primary btn-sm" type="submit">ارسال نظر</button>
-{#                        {% else %}#}
-{#                            <div class="alert alert-warning">#}
-{#                                برای درج نظر حتما باید <a href="{% url 'login_page' %}">وارد</a> سایت شوید#}
-{#                            </div>#}
-{#                        {% endif %}#}
+                      <button class="btn btn-primary btn-sm" type="button" onclick="sendArticleComment({{ article.id }})">ارسال نظر</button>
+
 
                     </form>
                   </div>
+                  {% else %}
+                  <div class="alert alert-warning">
+                      برای درج نظر حتما باید <a href="{% url 'login_page' %}">وارد</a> سایت شوید.
+                  </div>
+                  {% endif %}
                 </div>
               </div>
             </div>

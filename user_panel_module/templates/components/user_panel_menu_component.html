@@ -17,7 +17,7 @@
                   <h3 class="fs-sm mb-0 text-muted">داشبورد</h3>
                 </div>
                 <ul class="list-unstyled mb-0">
-                  <li class="border-bottom mb-0"><a class="nav-link-style d-flex align-items-center px-4 py-3" href="{% url 'user-basket' %}"><i class="ci-bag opacity-60 me-2"></i>سفارشات<span class="fs-sm text-muted ms-auto">{{ count }}</span></a></li>
+                  <li class="border-bottom mb-0"><a class="nav-link-style d-flex align-items-center px-4 py-3" href="{% url 'user_shopping_page' %}"><i class="ci-bag opacity-60 me-2"></i>سفارشات<span class="fs-sm text-muted ms-auto">{{ count }}</span></a></li>
                   <li class="border-bottom mb-0"><a class="nav-link-style d-flex align-items-center px-4 py-3" href="account-wishlist.html"><i class="ci-heart opacity-60 me-2"></i>علاقه مندی<span class="fs-sm text-muted ms-auto">3</span></a></li>
                   <li class="mb-0"><a class="nav-link-style d-flex align-items-center px-4 py-3" href="account-tickets.html"><i class="ci-help opacity-60 me-2"></i>تیکت<span class="fs-sm text-muted ms-auto">1</span></a></li>
                 </ul>
@@ -25,7 +25,8 @@
                   <h3 class="fs-sm mb-0 text-muted">تنظیمات حساب</h3>
                 </div>
                 <ul class="list-unstyled mb-0">
-                  <li class="border-bottom mb-0"><a class="nav-link-style d-flex align-items-center px-4 py-3 active" href="account-profile.html"><i class="ci-user opacity-60 me-2"></i>پروفایل</a></li>
+                  <li class="border-bottom mb-0"><a class="nav-link-style d-flex align-items-center px-4 py-3 active" href="{% url 'edit_profile_page' %}"><i class="ci-user opacity-60 me-2"></i>پروفایل</a></li>
+                  <li class="border-bottom mb-0"><a class="nav-link-style d-flex align-items-center px-4 py-3 active" href="{% url 'change_password_page' %}"><i class="ci-user opacity-60 me-2"></i>تغییر رمز</a></li>
                   <li class="border-bottom mb-0"><a class="nav-link-style d-flex align-items-center px-4 py-3" href="{% url 'edit_address_page' %}"><i class="ci-location opacity-60 me-2"></i>آدرس ها</a></li>
                   <li class="mb-0"><a class="nav-link-style d-flex align-items-center px-4 py-3" href="account-payment.html"><i class="ci-card opacity-60 me-2"></i>روش پرداخت</a></li>
                   <li class="d-lg-none border-top mb-0"><a class="nav-link-style d-flex align-items-center px-4 py-3" href="account-signin.html"><i class="ci-sign-out opacity-60 me-2"></i>خروج</a></li>

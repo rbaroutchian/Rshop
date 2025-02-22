@@ -1,29 +1,65 @@
-       {% for comment in articlecomments %}
-            <div class="product-review pb-4 mb-4 border-bottom">
-                <div class="d-flex mb-3">
+{% load poll_extras %}
+{% load static %}
 
-                  <div class="d-flex align-items-center me-4 pe-2"><img class="rounded-circle" src="img/shop/reviews/01.jpg" width="50" alt="#">
-                    <div class="ps-3">
-                    {% if comment.user %}
-                      <h6 class="fs-sm mb-0">{{ comment.user.username }}</h6>
-                        {% else %}
-                       <h6 class="fs-sm mb-0">{{ comment.name }}</h6>
-                        {% endif %}
+{% for comment in comments %}
+<div class="d-flex align-items-start py-4 border-bottom" id="single_comment_box_{{ comment.id }}">
+                 <img class="rounded-circle" src="{% static 'images/testimonials/04.jpg' %}" width="50" alt="مایکل دیویس">
+               <div class="ps-3">
+                 <div class="d-flex justify-content-between align-items-center mb-2">
+                   <h6 class="fs-md mb-0">{{ comment.user.username }}</h6>
+                     <a class="nav-link-style fs-sm fw-medium" href="#" onclick="fillParentId({{ comment.id }})">
+                         <i class="ci-reply me-2"></i>پاسخ</a>
+                 </div>
+                 <p class="fs-md mb-1">{{ comment.text }}</p>
+                   <span class="fs-ms text-muted"><i class="ci-time align-middle me-2"></i>{{ comment.create_date |show_jalali_date}}</span>
+                 <!-- comment reply-->
+                   {% for sub_comment in comment.articlecomment_set.all %}
 
 
-                        <span class="fs-ms text-muted">{{ comment.create_date }}</span>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star"></i>
-                    </div>
-                    <div class="fs-ms text-muted">83٪ از کاربران این بررسی را مفید دانستند</div>
-                  </div>
-                </div>
-                <p class="fs-md mb-2">{{ comment.text }}</p>
-                <div class="text-nowrap">
-                  <button class="btn-like" type="button">15</button>
-                  <button class="btn-dislike" type="button">3</button>
-                </div>
-              </div>
+
+                 <div class="d-flex align-items-start border-top pt-4 mt-4" id="single_comment_box_{{ sub_comment.id }}">
+                     <img class="rounded-circle" src="{% static 'images/icons8-cart-24.png' %}" width="50" alt="مایکل دیویس">
+                   <div class="ps-3">
+                     <div class="d-flex justify-content-between align-items-center mb-2">
+                       <h6 class="fs-md mb-0">{{ sub_comment.user }}</h6>
+                     </div>
+                     <p class="fs-md mb-1">{{ sub_comment.text }}</p><span class="fs-ms text-muted"><i class="ci-time align-middle me-2"></i>{{ sub_comment.create_date|show_jalali_date }}</span>
+                   </div>
+                 </div>
+                       {% endfor %}
+               </div>
+             </div>
+
 {% endfor %}
+
+
+
+{#       {% for comment in articlecomments %}#}
+{#            <div class="product-review pb-4 mb-4 border-bottom">#}
+{#                <div class="d-flex mb-3">#}
+{##}
+{#                  <div class="d-flex align-items-center me-4 pe-2"><img class="rounded-circle" src="img/shop/reviews/01.jpg" width="50" alt="#">#}
+{#                    <div class="ps-3">#}
+{#                    {% if comment.user %}#}
+{#                      <h6 class="fs-sm mb-0">{{ comment.user.username }}</h6>#}
+{#                        {% else %}#}
+{#                       <h6 class="fs-sm mb-0">{{ comment.name }}</h6>#}
+{#                        {% endif %}#}
+{##}
+{##}
+{#                        <span class="fs-ms text-muted">{{ comment.create_date }}</span>#}
+{#                    </div>#}
+{#                  </div>#}
+{#                  <div>#}
+{#                    <div class="star-rating"><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star-filled active"></i><i class="star-rating-icon ci-star"></i>#}
+{#                    </div>#}
+{#                    <div class="fs-ms text-muted">83٪ از کاربران این بررسی را مفید دانستند</div>#}
+{#                  </div>#}
+{#                </div>#}
+{#                <p class="fs-md mb-2">{{ comment.text }}</p>#}
+{#                <div class="text-nowrap">#}
+{#                  <button class="btn-like" type="button">15</button>#}
+{#                  <button class="btn-dislike" type="button">3</button>#}
+{#                </div>#}
+{#              </div>#}
+{#{% endfor %}#}

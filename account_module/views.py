@@ -62,8 +62,11 @@ class Register(View):
             #     )
 
                 new_user.set_password(user_password)
-                new_user.save()
                 send_sms(mobile, verification_code)
+
+
+                # new_user.save()
+
 
                 # send_email('فعالسازی حساب کاربری', new_user.email,
                 #            {'user': new_user},

@@ -5,6 +5,9 @@ from blog.models import Article, ArticleComment, ArticleCategory
 from django.views.generic import ListView, DetailView
 from jalali_date import date2jalali, datetime2jalali
 from blog.forms import ArticleCommentForm
+from django.views.decorators.csrf import csrf_exempt
+
+
 
 
 class ArticleListView(ListView):
@@ -40,8 +43,8 @@ class ArticleDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(ArticleDetailView, self).get_context_data()
         article: Article = kwargs.get('object')
-        context['articlecomments'] = ArticleComment.objects.filter(article=article,
-                        parent=None).order_by('create_date').prefetch_related('parentcomment')
+        context['comments'] = ArticleComment.objects.filter(article=article,
+                        parent=None).order_by('create_date').prefetch_related('articlecomment_set')
         context['comments_count'] = ArticleComment.objects.filter(article=article).count()
         context['comment_form'] = ArticleCommentForm()
         return context
@@ -59,31 +62,31 @@ class ArticleDetailView(DetailView):
         return self.get(request, *args, **kwargs)
 
 
-def add_article_comment(request: HttpRequest):
-    if request.user.is_authenticated:
-        article_id = request.GET.get('article_id')
-        article_comment = request.GET.get('article_comment')
-        parent_id = request.GET.get('parent_id')
-
-        # if not article_id:
-        #     return HttpResponse('Article ID is required!', status=400)
-        # article = get_object_or_404(Article, id=article_id)
-
-        print(article_id, article_comment, parent_id)
-        new_comment = ArticleComment(article_id=article_id,
-                                     text=article_comment,
-                                     user_id=request.user,
-                                     parent_id=parent_id)
-        new_comment.save()
-        context = {
-            'comments': ArticleComment.objects.filter(article_id=article_id,
-                        parent=None).order_by('create_date').prefetch_related('parentcomment'),
-            'comment_count': ArticleComment.objects.filter(article_id=article_id).count()
-        }
-
-        return render(request, 'includes/article_comment_partial.html', context)
-
-    return HttpResponse('response')
+# def add_article_comment(request: HttpRequest):
+#     if request.user.is_authenticated:
+#         article_id = request.GET.get('article_id')
+#         article_comment = request.GET.get('article_comment')
+#         parent_id = request.GET.get('parent_id')
+#
+#         # if not article_id:
+#         #     return HttpResponse('Article ID is required!', status=400)
+#         # article = get_object_or_404(Article, id=article_id)
+#
+#         print(article_id, article_comment, parent_id)
+#         new_comment = ArticleComment(article_id=article_id,
+#                                      text=article_comment,
+#                                      user_id=request.user,
+#                                      parent_id=parent_id)
+#         new_comment.save()
+#         context = {
+#             'comments': ArticleComment.objects.filter(article_id=article_id,
+#                         parent=None).order_by('create_date').prefetch_related('parentcomment'),
+#             'comment_count': ArticleComment.objects.filter(article_id=article_id).count()
+#         }
+#
+#         return render(request, 'includes/article_comment_partial.html', context)
+#
+#     return HttpResponse('response')
 
 
 
@@ -97,3 +100,27 @@ def article_categories_component(request: HttpRequest):
                   context)
 
 
+@csrf_exempt
+def add_article_comment(request: HttpRequest):
+    if request.method == "POST" and request.user.is_authenticated:
+        article_id = request.POST.get('articleID')
+        article_comment = request.POST.get('articleComment')
+        parent_id = request.POST.get('parentId')
+
+        parent_id = None if parent_id in [None, '', 'null'] else parent_id
+
+        if not article_id or not article_comment:
+            return JsonResponse({'error': 'مقادیر نامعتبر هستند'}, status=400)
+
+        new_comment = ArticleComment(article_id=article_id, text=article_comment, user_id=request.user.id,
+                                     parent_id=parent_id if parent_id else None)
+        new_comment.save()
+
+        context = {
+            'comments': ArticleComment.objects.filter(article_id=article_id,
+                                                      parent=None).order_by('create_date').prefetch_related('articlecomment_set'),
+            'comments_count': ArticleComment.objects.filter(article_id=article_id).count()
+        }
+        return render(request, 'includes/article_comment_partial.html', context)
+
+    return JsonResponse({'error': 'درخواست نامعتبر'}, status=400)

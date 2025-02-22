@@ -52,7 +52,7 @@ class Article(models.Model):
 class ArticleComment(models.Model):
     article = models.ForeignKey(Article, on_delete=models.CASCADE, verbose_name='مقاله')
     parent = models.ForeignKey('ArticleComment', null=True, blank=True,
-    on_delete=models.CASCADE, related_name='parentcomment', verbose_name='والد')
+    on_delete=models.CASCADE, related_name='articlecomment_set', verbose_name='والد')
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, verbose_name='کاربر')
     create_date = models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ثبت')
     text = models.TextField(verbose_name='متن نظر', default='نظر')

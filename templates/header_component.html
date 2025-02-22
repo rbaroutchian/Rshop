@@ -1,6 +1,6 @@
 
 {% load static %}
-
+{% load poll_extras %}
 
         <div class="navbar-sticky bg-light">
           <div class="navbar navbar-expand-lg navbar-light">
@@ -20,9 +20,9 @@
 {#                  <div class="navbar-tool-text ms-n3"><small>سلام وارد شوید</small>حساب من</div></a>#}
                 {% if request.user.is_authenticated %}
                     {% if request.user.is_superuser %}
-                        <a class="nav-item dropdown" href="admin"> پنل مدیریت ادمین  <a/>
+                        <a class="nav-item dropdown" href="admin/"> پنل مدیریت ادمین  <a/>
                         {% else %}
-                        <a  class="nav-item dropdown" href="edit_profile_page"> پنل کاربری  <a/>
+                        <a  class="nav-item dropdown" href="{% url 'edit_profile_page' %}"> پنل کاربری  <a/>
                     {% endif %}
                     {% else %}
                     <a   href="{% url 'login_page' %}"> ورود  </a> /
@@ -38,45 +38,21 @@
                   <div class="dropdown-menu dropdown-menu-end">
                     <div class="widget widget-cart px-3 pt-2 pb-3" style="width: 20rem;">
                       <div style="height: 15rem;" data-simplebar data-simplebar-auto-hide="false">
-                        <div class="widget-cart-item pb-2 border-bottom">
+                        
+                          {% for item in basket_order.orderdetails_set.all %}
+                          <div class="widget-cart-item pb-2 border-bottom">
                           <button class="btn-close text-danger" type="button" aria-label="Remove"><span aria-hidden="true">&times;</span></button>
-                          <div class="d-flex align-items-center"><a class="flex-shrink-0" href="shop-single-v1.html"><img src="img/shop/cart/widget/01.jpg" width="64" alt="محصول"></a>
+                          <div class="d-flex align-items-center"><a class="flex-shrink-0" href="shop-single-v1.html"><img src="{{ item.product.Pimage.url }}" width="64" alt="محصول"></a>
                             <div class="ps-2">
-                              <h6 class="widget-product-title"><a href="shop-single-v1.html">کفش کتانی</a></h6>
-                              <div class="widget-product-meta"><span class="text-accent me-2">150<small>00</small></span><span class="text-muted">x 1</span></div>
+                              <h6 class="widget-product-title"><a href="shop-single-v1.html">{{ item.product.Ptitle }}</a></h6>
+                              <div class="widget-product-meta"><span class="text-accent me-2">{{ item.product.Pprice|three_digits_currency }}</span></div>
                             </div>
                           </div>
                         </div>
-                        <div class="widget-cart-item py-2 border-bottom">
-                          <button class="btn-close text-danger" type="button" aria-label="Remove"><span aria-hidden="true">&times;</span></button>
-                          <div class="d-flex align-items-center"><a class="flex-shrink-0" href="shop-single-v1.html"><img src="img/shop/cart/widget/02.jpg" width="64" alt="محصول"></a>
-                            <div class="ps-2">
-                              <h6 class="widget-product-title"><a href="shop-single-v1.html">کفش کتانی</a></h6>
-                              <div class="widget-product-meta"><span class="text-accent me-2">79.<small>50</small></span><span class="text-muted">x 1</span></div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="widget-cart-item py-2 border-bottom">
-                          <button class="btn-close text-danger" type="button" aria-label="Remove"><span aria-hidden="true">&times;</span></button>
-                          <div class="d-flex align-items-center"><a class="flex-shrink-0" href="shop-single-v1.html"><img src="img/shop/cart/widget/03.jpg" width="64" alt="محصول"></a>
-                            <div class="ps-2">
-                              <h6 class="widget-product-title"><a href="shop-single-v1.html">کفش کتانی</a></h6>
-                              <div class="widget-product-meta"><span class="text-accent me-2">22.<small>50</small></span><span class="text-muted">x 1</span></div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="widget-cart-item py-2 border-bottom">
-                          <button class="btn-close text-danger" type="button" aria-label="Remove"><span aria-hidden="true">&times;</span></button>
-                          <div class="d-flex align-items-center"><a class="flex-shrink-0" href="shop-single-v1.html"><img src="img/shop/cart/widget/04.jpg" width="64" alt="محصول"></a>
-                            <div class="ps-2">
-                              <h6 class="widget-product-title"><a href="shop-single-v1.html">کفش کتانی</a></h6>
-                              <div class="widget-product-meta"><span class="text-accent me-2">9.<small>00</small></span><span class="text-muted">x 1</span></div>
-                            </div>
-                          </div>
-                        </div>
+                        {% endfor %}
                       </div>
                       <div class="d-flex flex-wrap justify-content-between align-items-center py-3">
-                        <div class="fs-sm me-2 py-2"><span class="text-muted">جمع کل:</span><span class="text-accent fs-base ms-1">265.<small>00</small></span></div><a class="btn btn-outline-secondary btn-sm" href="shop-cart.html">ادامه خرید<i class="ci-arrow-right ms-1 me-n1"></i></a>
+                        <div class="fs-sm me-2 py-2"><span class="text-muted">جمع کل:</span><span class="text-accent fs-base ms-1">{{ basket_total }}</span></div><a class="btn btn-outline-secondary btn-sm" href="shop-cart.html">ادامه خرید<i class="ci-arrow-right ms-1 me-n1"></i></a>
                       </div><a class="btn btn-primary btn-sm d-block w-100" href="checkout-details.html"><i class="ci-card me-2 fs-base align-middle"></i>بررسی</a>
                     </div>
                   </div>
@@ -106,6 +82,10 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="{% url 'contact_page' %}" >ارتباط با ما</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="{% url 'user-basket' %}" >سبد خرید</a>
+                    </li>
                 </ul>
                   
               </div>
