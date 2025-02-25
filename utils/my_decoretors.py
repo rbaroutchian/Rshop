@@ -3,7 +3,7 @@ from django.shortcuts import redirect
 from django.urls import reverse
 
 
-def permission_checker_decorator_factory(data=none):
+def permission_checker_decorator_factory(data=None):
     def permission_checker_decorator(func):
         def wrapper(request: HttpRequest, *args, **kwargs):
             print(data)

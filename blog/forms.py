@@ -1,5 +1,5 @@
 from django import forms
-from .models import ArticleComment
+from .models import ArticleComment,Article
 
 
 class ArticleCommentForm(forms.ModelForm):
@@ -28,3 +28,9 @@ class ArticleCommentForm(forms.ModelForm):
             if not email:
                 raise forms.ValidationError("لطفاً ایمیل خود را وارد کنید.")
         return cleaned_data
+
+
+class ArticleForm(forms.ModelForm):
+    class Meta:
+        model = Article
+        fields = ['title', 'selected_category', 'author', 'short_description', 'text', 'image']

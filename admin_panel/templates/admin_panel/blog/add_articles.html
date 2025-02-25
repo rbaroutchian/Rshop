@@ -47,7 +47,7 @@
 
                 <div class="card">
     <div class="card-body p-4">
-        <h5 class="card-title">ویرایش مقاله</h5>
+        <h5 class="card-title">اضافه کردن مقاله جدید</h5>
         <hr />
         <div class="form-body mt-4">
             <form method="POST" enctype="multipart/form-data">
@@ -59,15 +59,14 @@
                             <div class="mb-3">
                                 <label for="id_title" class="form-label">عنوان مقاله</label>
                                 <input type="text" name="title" id="id_title" class="form-control"
-                                       value="{{ form.title.value }}">
+                                       >
                             </div>
                             <div class="mb-3">
                                 <label for="id_category" class="form-label">دسته‌بندی</label>
                                 <select name="selected_category" id="id_category" class="form-select" multiple>
                                     {% for category in form.selected_category.field.queryset %}
-                                        <option value="{{ category.id }}" {% if category in form.instance.selected_category.all %}selected{% endif %}>
-                                            {{ category.title }}
-                                        </option>
+                                    <option value="{{ category.id }}">{{ category.title }}</option>
+
                                     {% endfor %}
                                 </select>
                             </div>
@@ -76,7 +75,7 @@
                                 <label for="id_author" class="form-label">نویسنده</label>
                                 <select name="author" id="id_author" class="form-select">
                                 {% for author in form.author.field.queryset %}
-                                <option value="{{ author.id }}" {% if form.instance.author.id == author.id %}selected{% endif %}>
+                                <option value="{{ author.id }}">
                                 {{ author.get_full_name }}
                                  </option>
                                  {% endfor %}
@@ -85,12 +84,12 @@
                             <div class="mb-3">
                                 <label for="id_short_description" class="form-label">توضیحات کوتاه</label>
                                 <textarea name="short_description" id="id_short_description" rows="3"
-                                          class="form-control">{{ form.short_description.value }}</textarea>
+                                          class="form-control"></textarea>
                             </div>
                             <div class="mb-3">
                                 <label for="id_text" class="form-label">توضیحات</label>
                                 <textarea name="text" id="id_text" rows="6"
-                                          class="form-control">{{ form.text.value }}</textarea>
+                                          class="form-control"></textarea>
                             </div>
                             <div class="mb-3">
                                 <label for="id_image" class="form-label">تصویر مقاله</label>
@@ -106,7 +105,7 @@
 
                         <div class="border border-3 p-4 rounded">
                             <div class="d-grid">
-                                <button type="submit" class="btn btn-primary">ذخیره تغییرات</button>
+                                <button type="submit" class="btn btn-primary">اضافه کردن مقاله</button>
                             </div>
                         </div>
                 </div>
