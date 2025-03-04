@@ -76,7 +76,8 @@ class Product(models.Model):
     Pimage = models.ImageField(default='media/aks/01.jpg', verbose_name='تصویر')
     slug = models.SlugField(default="", blank=True, db_index=True) #editable=False
     #دی بی ایندکس برای پرهیز از کندی سرعت می باشد
-
+    meta_des = models.CharField(max_length=300,blank=True, verbose_name='توضیحات سئو')
+    meta_keyword = models.CharField(max_length=300, blank=True, verbose_name='کلمه کلیدی سئو')
     #برای اینکه وقتی ادرس را کاربر وارد کرد همون آی دی که مربوط به این محصول هست ریورس کند
     def get_absolute_url(self):
         return reverse('detail', args=[self.slug])

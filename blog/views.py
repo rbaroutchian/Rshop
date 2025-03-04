@@ -124,3 +124,5 @@ def add_article_comment(request: HttpRequest):
         return render(request, 'includes/article_comment_partial.html', context)
 
     return JsonResponse({'error': 'درخواست نامعتبر'}, status=400)
+
+

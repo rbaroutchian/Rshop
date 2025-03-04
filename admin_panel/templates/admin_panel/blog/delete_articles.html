@@ -1,6 +1,0 @@
-<form method="POST">
-    {% csrf_token %}
-    <p>آیا مطمئن هستید که می‌خواهید مقاله "{{ object.title }}" را حذف کنید؟</p>
-    <button type="submit" class="btn btn-danger">بله، حذف شود</button>
-    <a href="{% url 'admin_articles' %}" class="btn btn-secondary">لغو</a>
-</form>

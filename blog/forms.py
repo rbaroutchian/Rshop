@@ -1,5 +1,5 @@
 from django import forms
-from .models import ArticleComment,Article
+from .models import ArticleComment, Article, ArticleCategory
 
 
 class ArticleCommentForm(forms.ModelForm):
@@ -34,3 +34,15 @@ class ArticleForm(forms.ModelForm):
     class Meta:
         model = Article
         fields = ['title', 'selected_category', 'author', 'short_description', 'text', 'image']
+
+
+class ArticleCategoryForm(forms.ModelForm):
+    class Meta:
+        model = ArticleCategory
+        fields = ['title', 'parent', 'url_title']
+
+
+class ArticleCommentFormAdmin(forms.ModelForm):
+    class Meta:
+        model = ArticleComment
+        fields = ['article', 'user', 'text', 'name', 'email']

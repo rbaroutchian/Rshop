@@ -128,11 +128,11 @@
 					<ul>
 						<li> <a href="{% url 'admin_articles' %}"><i class="bx bx-left-arrow-alt"></i>لیست مقالات</a>
 						</li>
-						<li> <a href="#"><i class="bx bx-left-arrow-alt"></i>درج مقاله</a>
+						<li> <a href="{% url 'admin_add_articles' %}"><i class="bx bx-left-arrow-alt"></i>درج مقاله</a>
 						</li>
-						<li> <a href="#"><i class="bx bx-left-arrow-alt"></i>دسته بندی مقالات</a>
+						<li> <a href="{% url 'admin_articles_category' %}"><i class="bx bx-left-arrow-alt"></i>دسته بندی مقالات</a>
 						</li>
-                        <li> <a href="#"><i class="bx bx-left-arrow-alt"></i>نظرات مقاله</a>
+                        <li> <a href="{% url 'admin_articles_comment' %}"><i class="bx bx-left-arrow-alt"></i>نظرات مقاله</a>
 						</li>
 					</ul>
 				</li>
