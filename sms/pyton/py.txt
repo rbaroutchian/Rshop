@@ -1,0 +1,21 @@
+import requests
+import json
+
+url = "https://api2.ippanel.com/api/v1/sms/pattern/normal/send"
+
+payload = json.dumps({
+  "code": "your-pattern-code",
+  "sender": "+983000505",
+  "recipient": "093977xxxx",
+  "variable": {
+    "verification-code": "test"
+  }
+})
+headers = {
+  'apikey': 'your-apikey',
+  'Content-Type': 'application/json'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)
