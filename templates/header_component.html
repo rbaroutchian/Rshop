@@ -32,8 +32,8 @@
                     
                   {% endif %}
                   <div class="navbar-tool dropdown ms-3">
-                      <a class="navbar-tool-icon-box bg-secondary dropdown-toggle" href="{% url 'user-basket' %}"><span class="navbar-tool-label">4</span><i class="navbar-tool-icon "><img src="{% static 'images/icons8-cart-24.png' %}"></i></a>
-                      <a class="navbar-tool-text" href="{% url 'user-basket' %}"><small>سبدخرید</small>25600</a>
+                      <a class="navbar-tool-icon-box bg-secondary dropdown-toggle" href="{% url 'user-basket' %}"><span class="navbar-tool-label">{{ total_items }}</span><i class="navbar-tool-icon "><img src="{% static 'images/icons8-cart-24.png' %}"></i></a>
+                      <a class="navbar-tool-text" href="{% url 'user-basket' %}"><small>سبدخرید من</small>{{ basket_total }}</a>
                   <!-- Cart dropdown-->
                   <div class="dropdown-menu dropdown-menu-end">
                     <div class="widget widget-cart px-3 pt-2 pb-3" style="width: 20rem;">
@@ -86,6 +86,9 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="{% url 'user-basket' %}" >سبد خرید</a>
                     </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="{% url 'admin_dashboard' %}" >داشبورد مدیریت</a>
+                    </li>
                 </ul>
                   
               </div>
@@ -96,14 +99,14 @@
       <div class="page-title-overlap bg-dark pt-4">
         <div class="container d-lg-flex justify-content-between py-2 py-lg-3">
           <div class="order-lg-2 mb-3 mb-lg-0 pt-lg-2">
-            <nav aria-label="breadcrumb">
-              <ol class="breadcrumb breadcrumb-light flex-lg-nowrap justify-content-center justify-content-lg-start">
-                <li class="breadcrumb-item"><a class="text-nowrap" href="{% url 'home' %}"><i class="ci-home"></i>خانه</a></li>
-                <li class="breadcrumb-item text-nowrap"><a href="#">فروشگاه</a>
-                </li>
-                <li class="breadcrumb-item text-nowrap active" aria-current="page">لیست محصولات</li>
-              </ol>
-            </nav>
+{#            <nav aria-label="breadcrumb">#}
+{#              <ol class="breadcrumb breadcrumb-light flex-lg-nowrap justify-content-center justify-content-lg-start">#}
+{#                <li class="breadcrumb-item"><a class="text-nowrap" href="{% url 'home' %}"><i class="ci-home"></i>خانه</a></li>#}
+{#                <li class="breadcrumb-item text-nowrap"><a href="#">فروشگاه</a>#}
+{#                </li>#}
+{#                <li class="breadcrumb-item text-nowrap active" aria-current="page">لیست محصولات</li>#}
+{#              </ol>#}
+{#            </nav>#}
           </div>
           <div class="order-lg-1 pe-lg-4 text-center text-lg-start">
             <h1 class="h3 text-light mb-0">

@@ -10,8 +10,11 @@ def basket_context(request):
             order_detail.product.Pprice * order_detail.count
             for order_detail in current_order.orderdetails_set.all()
         )
+        total_items = sum(order_detail.count for order_detail in current_order.orderdetails_set.all())
+
         context = {
             'basket_order': current_order,
-            'basket_total': total_amount
+            'basket_total': total_amount,
+            'total_items': total_items
         }
     return context

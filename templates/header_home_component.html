@@ -184,30 +184,30 @@
                 <li><a class="dropdown-item" href="order-tracking.html"><i class="ci-location text-muted me-2"></i>رهیگیری سفارش</a></li>
               </ul>
             </div>
-            <div class="topbar-text text-nowrap d-none d-md-inline-block"><i class="ci-support"></i><span class="text-muted me-1">پشتیبانی</span><a class="topbar-link" href="tel:00331697720">09162352304</a></div>
+            <div class="topbar-text text-nowrap d-none d-md-inline-block"><i class=""></i><span class="text-muted me-1">پشتیبانی</span><a class="topbar-link" href="tel:00331697720">09308363863</a></div>
             <div class="tns-carousel  tns-controls-static d-none d-md-block">
               <div class="tns-carousel-inner" data-carousel-options="{&quot;mode&quot;: &quot;gallery&quot;, &quot;nav&quot;: false}">
                  <div class="topbar-text">ارسال رایگان با سفارش بیش از 200 </div>
-                <div class="topbar-text">ما ظرف 30 روز پول برمی گردانیم</div>
-               <div class="topbar-text">دوستانه 24/7 پشتیبانی مشتری</div>
+{#                <div class="topbar-text">ما ظرف 30 روز پول برمی گردانیم</div>#}
+{#               <div class="topbar-text">دوستانه 24/7 پشتیبانی مشتری</div>#}
               </div>
             </div>
-            <div class="ms-3 text-nowrap"><a class="topbar-link me-4 d-none d-md-inline-block" href="order-tracking.html"><i class="ci-location"></i>رهیگیری سفارش</a>
-              <div class="topbar-text dropdown disable-autohide"><a class="topbar-link dropdown-toggle" href="#" data-bs-toggle="dropdown"><img class="me-2" src="img/flags/en.png" width="20" alt="English">انگلیسی</a>
-                <ul class="dropdown-menu dropdown-menu-end">
-                  <li class="dropdown-item">
-                    <select class="form-select form-select-sm">
-                      <option value="usd">دلار</option>
-                      <option value="eur">تومان</option>
-                       <option value="ukp">یورو</option>
-                           <option value="jpy">پوند</option>
-                    </select>
-                  </li>
-                  <li><a class="dropdown-item pb-1" href="#"><img class="me-2" src="img/flags/fr.png" width="20" alt="فرانسه">فرانسه</a></li>
-                   <li><a class="dropdown-item pb-1" href="#"><img class="me-2" src="img/flags/de.png" width="20" alt="آلمان">آلمان</a></li>
-                  <li><a class="dropdown-item" href="#"><img class="me-2" src="img/flags/it.png" width="20" alt="ایتالیا">ایتالیا</a></li>
-                </ul>
-              </div>
+            <div class="ms-3 text-nowrap"><a class="topbar-link me-4 d-none d-md-inline-block" href="{% url 'user-basket' %}"><i class=""></i>رهیگیری سفارش</a>
+{#              <div class="topbar-text dropdown disable-autohide"><a class="topbar-link dropdown-toggle" href="#" data-bs-toggle="dropdown"><img class="me-2" src="img/flags/en.png" width="20" alt="English">انگلیسی</a>#}
+{#                <ul class="dropdown-menu dropdown-menu-end">#}
+{#                  <li class="dropdown-item">#}
+{#                    <select class="form-select form-select-sm">#}
+{#                      <option value="usd">دلار</option>#}
+{#                      <option value="eur">تومان</option>#}
+{#                       <option value="ukp">یورو</option>#}
+{#                           <option value="jpy">پوند</option>#}
+{#                    </select>#}
+{#                  </li>#}
+{#                  <li><a class="dropdown-item pb-1" href="#"><img class="me-2" src="img/flags/fr.png" width="20" alt="فرانسه">فرانسه</a></li>#}
+{#                   <li><a class="dropdown-item pb-1" href="#"><img class="me-2" src="img/flags/de.png" width="20" alt="آلمان">آلمان</a></li>#}
+{#                  <li><a class="dropdown-item" href="#"><img class="me-2" src="img/flags/it.png" width="20" alt="ایتالیا">ایتالیا</a></li>#}
+{#                </ul>#}
+{#              </div>#}
             </div>
           </div>
         </div>
@@ -221,8 +221,8 @@
               <div class="navbar-toolbar d-flex flex-shrink-0 align-items-center">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"><span class="navbar-toggler-icon"></span></button><a class="navbar-tool navbar-stuck-toggler" href="#"><span class="navbar-tool-tooltip">منو</span>
                   <div class="navbar-tool-icon-box"><i class="navbar-tool-icon ci-menu"></i></div></a><a class="navbar-tool d-none d-lg-flex" href="account-wishlist.html"><span class="navbar-tool-tooltip">علاقه مندی</span>
-                  <div class="navbar-tool-icon-box"><i class="navbar-tool-icon ci-heart"></i></div></a><a class="navbar-tool ms-1 ms-lg-0 me-n1 me-lg-2" href="#signin-modal" data-bs-toggle="modal">
-                  <div class="navbar-tool-icon-box"><i class="navbar-tool-icon ci-user"></i></div>
+                  <div class="navbar-tool-icon-box"><i class="navbar-tool-icon"><img src="{% static 'images/favorite-24.png' %}"></i></div></a><a class="navbar-tool ms-1 ms-lg-0 me-n1 me-lg-2" href="#signin-modal" data-bs-toggle="modal">
+                  <div class="navbar-tool-icon-box"><i class="navbar-tool-icon"><img src="{% static 'images/icons8-user-24.png' %}"></i></div>
 {#                  <div class="navbar-tool-text ms-n3"><small>سلام وارد شوید</small>حساب من</div></a>#}
                 {% if request.user.is_authenticated %}
                     {% if request.user.is_superuser %}
@@ -239,9 +239,9 @@
                   {% endif %}
                   <div class="navbar-tool dropdown ms-3">
                       <a class="navbar-tool-icon-box bg-secondary dropdown-toggle" href="{% url 'user-basket' %}">
-                      <span class="navbar-tool-label">4</span>
-                      <i class="navbar-tool-icon ci-cart"></i></a>
-                      <a class="navbar-tool-text" href="{% url 'user-basket' %}"><small>سبدخرید</small>25600</a>
+                      <span class="navbar-tool-label">{{ total_items }}</span>
+                      <i class="navbar-tool-icon"><img src="{% static 'images/icons8-basket-48.png' %}"></i></a>
+                      <a class="navbar-tool-text" href="{% url 'user-basket' %}"><small>سبدخرید من</small>{{ basket_total }}</a>
                   <!-- Cart dropdown-->
                   <div class="dropdown-menu dropdown-menu-end">
                     <div class="widget widget-cart px-3 pt-2 pb-3" style="width: 20rem;">
@@ -284,6 +284,7 @@
                 </div>
                 <!-- Departments menu-->
                 <!-- Primary menu-->
+
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown active">
                       <a class="nav-link dropdown-toggle" href="{% url 'home' %}" >خانه</a>
@@ -299,6 +300,9 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="{% url 'user-basket' %}" >سبد خرید</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="{% url 'admin_dashboard' %}" > داشبورد مدیریت</a>
                     </li>
                 </ul>
               </div>

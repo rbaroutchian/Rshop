@@ -16,5 +16,13 @@
         </library>
       </libraries>
     </data-source>
+    <data-source source="LOCAL" name="ramin" uuid="17eb25f8-c5d5-47da-a1a6-b027f7142ebd">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <remarks>d</remarks>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://185.10.75.21:3306/Rshop</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

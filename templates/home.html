@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <title>
         {% block page_title %}
-        
+        فروشگاه اینترنتی
         {% endblock page_title %}
     </title>
 <!-- SEO Meta Tags-->
@@ -19,13 +19,42 @@
     <!-- Favicon and Touch Icons-->
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
-    
+
    {% include 'header_home_reference.html' %}
 
 
 </head>
 <!-- Body-->
   <body class="handheld-toolbar-enabled">
+  
+<script>
+    if (!localStorage.getItem('new_year_message_shown')) {
+        // نمایش پیغام با استفاده از SweetAlert2
+        Swal.fire({
+            title: "نوروز 1404 مبارک باد",
+            text: "با آرزوی سالی پر از مهربانی برای شما",
+            imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTX9q5EMBnXO0s6346Ka5QiOd0csnSICXxSSw&s",
+            imageWidth: 250,
+            imageHeight: 250,
+            imageAlt: "تصویر سفارشی",
+        }).then(() => {
+            // پس از بستن پیغام، در LocalStorage یک ورودی برای نشان دادن اینکه پیغام نمایش داده شده است تنظیم می‌شود
+            localStorage.setItem('new_year_message_shown', 'true');
+        });
+    }
+</script>
+
+  
+{#  <script>#}
+{#        Swal.fire({#}
+{#            title: "نوروز 1404 مبارک باد",#}
+{#            text: "با آروزی سالی پر از مهربانی برای شما",#}
+{#            imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTX9q5EMBnXO0s6346Ka5QiOd0csnSICXxSSw&s",#}
+{#            imageWidth: 250,#}
+{#            imageHeight: 250,#}
+{#            imageAlt: "تصویر سفارشی",#}
+{#        });#}
+{#    </script>#}
     <!-- Google Tag Manager (noscript)-->
   
             {% render_partial 'home.views.site_header_home_component' %}

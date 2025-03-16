@@ -22,6 +22,7 @@ from order_module.models import Order, OrderDetail
 #                       {'products': product,
 #                        'categories': product2})
 
+
 class homeView(TemplateView):
     template_name = 'home/home_page.html'
 
@@ -30,6 +31,8 @@ class homeView(TemplateView):
         sliders = Slider.objects.filter(is_active=True)
         context['sliders'] = sliders
         return context
+
+
 def site_header(request):
     setting: SiteSetting = SiteSetting.objects.filter(is_main_setting=True).first()
     context = {

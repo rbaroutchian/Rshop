@@ -7,19 +7,13 @@
             <div class="widget widget-links widget-light pb-2 mb-4">
               <h3 class="widget-title text-light">بخشهای فروشگاه</h3>
               <ul class="widget-list">
-                <li class="widget-list-item"><a class="widget-list-link" href="#">کفش های کتانی و ورزشی</a></li>
-                <li class="widget-list-item"><a class="widget-list-link" href="#">لباس ورزشی</a></li>
-                <li class="widget-list-item"><a class="widget-list-link" href="#">لباس ورزشی</a></li>
-                 <li class="widget-list-item"><a class="widget-list-link" href="#">لباس ورزشی</a></li>
-                <li class="widget-list-item"><a class="widget-list-link" href="#">لباس ورزشی</a></li>
-                 <li class="widget-list-item"><a class="widget-list-link" href="#">لباس ورزشی</a></li>
-                 <li class="widget-list-item"><a class="widget-list-link" href="#">لباس ورزشی</a></li>
-               <li class="widget-list-item"><a class="widget-list-link" href="#">لباس ورزشی</a></li>
-                <li class="widget-list-item"><a class="widget-list-link" href="#">لباس ورزشی</a></li>
-                <li class="widget-list-item"><a class="widget-list-link" href="#">لباس ورزشی</a></li>
-                 <li class="widget-list-item"><a class="widget-list-link" href="#">لباس ورزشی</a></li>
-              <li class="widget-list-item"><a class="widget-list-link" href="#">لباس ورزشی</a></li>
-              <li class="widget-list-item"><a class="widget-list-link" href="#">لباس ورزشی</a></li>
+                  {% for cat in main_categories  %}
+                      
+                      <li class="widget-list-item"><a class="widget-list-link" href="#">{{ cat.Ctitle }}</a></li>
+
+                  {% endfor %}
+                  
+                
               </ul>
             </div>
           </div>

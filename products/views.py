@@ -20,18 +20,24 @@ class productListView(ListView):
     def get_context_data(self, *args, object_list=None, **kwargs):
         context = super(productListView, self).get_context_data(*args, **kwargs)
         query = Product.objects.all()
+
         product : Product = query.order_by('-Pprice').first()
         db_max_price = product.Pprice if product is not None else 0
         context['db_max_price']= int(db_max_price) if db_max_price else 0
         context['start_price']= int(self.request.GET.get('start_price') or 0)
         context['end_price']=int(self.request.GET.get('end_price') or db_max_price)
         context['selected_brands'] = self.request.GET.getlist('brands')
+
+        category_name = self.kwargs.get('category', None)
+        context['category_name'] = category_name if category_name else 'all'
+
+
         return context
 
     def get_queryset(self):
         query = super(productListView, self).get_queryset()
         # base_query = super(productListView, self).get_queryset()
-        category_name = self.kwargs.get('category')
+        category_name = self.kwargs.get('category', None)
         # brand_name = self.kwargs.get('brand')
         request : HttpRequest = self.request
         start_price = request.GET.get('start_price')
@@ -46,8 +52,8 @@ class productListView(ListView):
         query =data
 
 
-        if category_name is not None:
-            query = query.filter(selected_categories__url_title__iexact=category_name)
+        if category_name and category_name != 'all':
+            query = query.filter(Pcategory__urltitle__iexact=category_name)
 
         selected_brands = self.request.GET.getlist('brands')
         if selected_brands:
@@ -224,6 +230,11 @@ def site_header_component(request):
 
 
 def site_footer_component(request):
-    return render(request, 'footer_component.html', {})
+    product_main_categories = ProductCategory.objects.filter(is_active=True, parent_id=None)
+
+    context = {
+        'main_categories': product_main_categories
+    }
+    return render(request, 'footer_component.html', context)
 
 
