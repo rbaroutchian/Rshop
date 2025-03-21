@@ -12,4 +12,9 @@ urlpatterns = [
     path('articles/cat/edit/<pk>', views.ArticleCatUpdateView.as_view(), name='admin_edit_cat_article'),
     path('articles/delete/<int:pk>/', views.ArticleDelete.as_view(), name='admin_delete_article'),
     path('articles/comment/delete/<int:pk>/', views.CommentDelete.as_view(), name='admin_delete_comment_article'),
+    path('users/', views.UserListView.as_view(), name='admin_users'),
+    path('users/delete/<int:pk>/', views.UserDelete.as_view(), name='admin_users_delete'),
+    path('users/add/', views.UserAdd.as_view(), name='admin_users_add'),
+    path('users/edit/<pk>', views.UserUpdateView.as_view(), name='admin_edit_users'),
+
 ]

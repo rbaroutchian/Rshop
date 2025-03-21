@@ -6,6 +6,8 @@ from django.views.generic import ListView, UpdateView, CreateView, DeleteView
 from blog.models import Article, ArticleCategory, ArticleComment
 from blog.forms import ArticleForm, ArticleCategoryForm, ArticleCommentFormAdmin
 from utils.my_decoretors import permission_checker_decorator_factory
+from account_module.models import User
+from account_module.form import UserFormAdmin
 # Create your views here.
 
 
@@ -152,3 +154,53 @@ class CommentAdd(CreateView):
         self.object.save()
         form.save()
         return super().form_valid(form)
+
+
+@method_decorator(permission_checker_decorator_factory(), name='dispatch')
+class UserListView(ListView):
+    model = User
+    paginate_by = 12
+    template_name = 'admin_panel/user/user_list.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(UserListView, self).get_context_data(*args, **kwargs)
+        return context
+
+    def get_queryset(self):
+        query = super(UserListView, self).get_queryset()
+        return query
+
+
+@method_decorator(permission_checker_decorator_factory(), name='dispatch')
+class UserUpdateView(UpdateView):
+    model = User
+    form_class = UserFormAdmin
+    template_name = 'admin_panel/user/user_edit.html'
+    success_url = reverse_lazy('admin_users')
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.save()
+        form.save()
+        return super().form_valid(form)
+
+
+@method_decorator(permission_checker_decorator_factory(), name='dispatch')
+class UserAdd(CreateView):
+    model = User
+    form_class = UserFormAdmin
+    template_name = 'admin_panel/user/user_add.html'
+    success_url = reverse_lazy('admin_users')
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.save()
+        form.save()
+        return super().form_valid(form)
+
+
+@method_decorator(permission_checker_decorator_factory(), name='dispatch')
+class UserDelete(DeleteView):
+    model = User
+    template_name = 'admin_panel/user/user_delete.html'
+    success_url = reverse_lazy('admin_users')

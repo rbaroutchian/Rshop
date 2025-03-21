@@ -158,3 +158,9 @@ class ResetPasswordForm(forms.Form):
             validators.MaxLengthValidator(100),
         ]
     )
+
+
+class UserFormAdmin(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username', 'password', 'email', 'mobile', 'first_name', 'last_name']
